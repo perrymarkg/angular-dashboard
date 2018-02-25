@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+    <dashboard-title></dashboard-title>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form class="form" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+      <div class="group-wrapper" formGroupName="generalSettings">
+        <h4>General</h4>
+        <div class="form-group">
+          <label>Blog Name</label>
+          <input type="text" class="form-control" formControlName="blogName" />
+          <div class="error" 
+            [hidden]="settingsForm.get('generalSettings.blogName').value || settingsForm.pristine">
+            Blog Name Required
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Blog Title</label>
+          <input type="text" class="form-control" formControlName="blogTitle" />
+        </div>
+        <div class="form-group">
+          <label>Logo Image (URL)</label>
+          <input type="text" class="form-control" formControlName="blogLogo" />
+        </div>
+      </div>
+      <h4>Front End</h4>
+      <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="showBlog" formControlName="showBlogName">
+            <label class="custom-control-label" for="showBlog">Show blog name on header</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="useSidebar" formControlName="useSidebar">
+            <label class="custom-control-label" for="useSidebar">Use Sidebar</label>
+          </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="settingsForm.invalid">Save</button>
+    </form>
+  </div>
+</div>

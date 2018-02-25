@@ -1,0 +1,22 @@
+ul {
+    list-style-type: none;
+    padding-left:0;
+}
+ul li {
+    border-top:1px solid #222;
+    border-bottom:1px solid #888;
+}
+ul li a {
+    display:block;
+    padding:10px;
+    color:#ffffff;
+}
+ul li.active {
+    border-bottom:1px solid#007bff;
+}
+ul li.active a {
+    color:#007bff;
+}
+ul li a:hover {
+    text-decoration: none;
+}

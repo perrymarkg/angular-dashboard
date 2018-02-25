@@ -1,0 +1,10 @@
+.wrapper {
+    padding:80px 0;
+}
+.login-form {
+    background: #ffffff;
+    margin:0 auto;
+    width:380px;
+    border-radius: 5px;
+    padding:20px;
+}
