@@ -7,6 +7,8 @@ import { TitleDirective } from './dashboard/directives/title.directive';
 
 import { LoginService } from './services/login.service'
 
+import { AuthGuard } from './services/authguard.service';
+
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -27,7 +29,7 @@ import { SettingsComponent } from './dashboard/settings/settings.component';
 
 const appRoutes: Routes = [
   { path: '', component: FrontendComponent },
-  { path: 'dashboard', component: DashboardComponent, children: [
+  { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
     { path: '', component:HomeComponent },
     { path: 'blog', component:BlogComponent },
     { path: 'blog/new', component: NewBlogComponent },
@@ -60,7 +62,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

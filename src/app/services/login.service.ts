@@ -1,27 +1,24 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
+
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LoginService {
 
-    private loggedIn: boolean = false;
+    auth: Observable<firebase.User>;
+    user:boolean | firebase.User;
 
-    constructor(private firebaseAuth: AngularFireAuth){
-        this.firebaseAuth.authState.subscribe( s => {
-            if( s )
-                this.loggedIn = true
+    constructor(private firebaseAuth: AngularFireAuth, private router: Router){
+        this.auth = this.firebaseAuth.authState;
+        this.auth.subscribe( r => {
+            if(r){
+                this.user = r;
+                //this.router.navigate(['/dashboard']);
+            }            
         })
-    }
-
-    authState(){
-        return this.firebaseAuth.authState
-    }
-
-    isLoggedIn(){
-        let sub = this.firebaseAuth.authState.subscribe( s => {
-            return s ? true : false;
-        })
-        return sub;
     }
 
     login(email: string, password: string):Promise<{valid:boolean, message:string}>{
@@ -33,6 +30,10 @@ export class LoginService {
         .catch( r => {
             return {valid: false, message:r.message}
         })
+    }
+
+    logOut(){
+        this.firebaseAuth.auth.signOut();
     }
 
 }

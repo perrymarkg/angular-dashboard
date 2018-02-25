@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { PageModel } from '../../../models/page.model'
 
 @Component({
   selector: 'app-new-blog',
@@ -10,6 +11,7 @@ export class NewBlogComponent implements OnInit {
 
   title: string;
   content: string;
+  page: PageModel;
   allowSubmit: boolean = false;
 
   constructor() { }
@@ -19,18 +21,15 @@ export class NewBlogComponent implements OnInit {
   }
 
   onSubmit( form: NgForm ){
-    console.log(form);
     if( form.valid ){
-      // submit the form
-
-      // Override values on the form
-      form.setValue({
-        title: 'New Title',
-        content: 'new content'
-      })
-      form.controls['content'].setValue('testing')
-      // Override
-      
+      /* const pageItem = {
+        title: form.controls['title'].value
+      }
+      this.page = pageItem */
+      /* this.page.title = form.controls['title'].value;
+      this.page.content = form.controls['content'].value;
+      this.page.created = new Date(); */
+      console.log(this.page);
       // reset values sample
       //form.reset();
     }
