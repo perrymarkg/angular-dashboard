@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DbService } from '../../services/db.service'
+import { PageModel } from '../../models/page.model'
+import { Observable } from 'rxjs/Observable';
+import { AngularFireList } from 'angularfire2/database';
+
 
 @Component({
   selector: 'app-blog',
@@ -7,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
+  object: AngularFireList<any>;
+  pages: Observable<any> | boolean = false;
+
+  constructor(private db: DbService) { }
 
   ngOnInit() {
+    this.object = this.db.getObject('pages');
+    this.pages = this.object.valueChanges()
   }
 
 }

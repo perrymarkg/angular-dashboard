@@ -6,6 +6,24 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-
+    <table *ngIf="pages | async" class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Status</th>
+        </tr>  
+      </thead>
+      <tbody>
+        <tr *ngFor="let page of pages | async">
+          <td>{{ page.title }}</td>
+          <td>{{ page.created | date: 'yyyy-MM-dd hh:ss'}}</td>
+          <td>{{ page.updated | date: 'yyyy-MM-dd hh:ss' }}</td>
+          <td>{{ page.active ? 'Active' : 'Inactive'}}</td>
+        </tr>
+      </tbody>
+      
+    </table>
   </div>
 </div>

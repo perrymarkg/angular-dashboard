@@ -5,13 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TitleDirective } from './dashboard/directives/title.directive';
 
-import { LoginService } from './services/login.service'
+import { LoginService } from './services/login.service';
+import { DbService } from './services/db.service';
 
 import { AuthGuard } from './services/authguard.service';
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { env } from './env/env';
 
@@ -60,9 +61,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(env.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFireDatabaseModule
   ],
-  providers: [LoginService, AuthGuard],
+  providers: [LoginService, AuthGuard, DbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PageModel } from '../../../models/page.model'
+import { DbService } from '../../../services/db.service';
 
 @Component({
   selector: 'app-new-blog',
@@ -14,7 +15,7 @@ export class NewBlogComponent implements OnInit {
   page: PageModel;
   allowSubmit: boolean = false;
 
-  constructor() { }
+  constructor(private db: DbService) { }
 
   ngOnInit() {
 
@@ -22,16 +23,21 @@ export class NewBlogComponent implements OnInit {
 
   onSubmit( form: NgForm ){
     if( form.valid ){
-      /* const pageItem = {
-        title: form.controls['title'].value
+      this.page = {
+        parent:'',
+        title: form.controls['title'].value,
+        content: form.controls['content'].value,
+        created: new Date().getTime(),
+        updated: new Date().getTime(),
+        active: true,
+        type: 'blog',
+        categories: []
       }
-      this.page = pageItem */
-      /* this.page.title = form.controls['title'].value;
-      this.page.content = form.controls['content'].value;
-      this.page.created = new Date(); */
-      console.log(this.page);
-      // reset values sample
-      //form.reset();
+      this.db.addPages(this.page).then( r => {
+        if( r ){
+          form.reset()
+        }
+      })
     }
     else {
       // do something
