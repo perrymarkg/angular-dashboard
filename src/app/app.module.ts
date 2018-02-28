@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -66,7 +66,11 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
-  providers: [LoginService, AuthGuard, DbService],
+  providers: [
+    LoginService, 
+    AuthGuard, 
+    DbService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

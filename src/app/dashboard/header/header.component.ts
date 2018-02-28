@@ -3,6 +3,7 @@ import { DbService } from '../../services/db.service';
 import { AngularFireList } from 'angularfire2/database';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,14 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   logo: string;
+  blogTitle: string;
 
   settingsObj: AngularFireList<any>;
   constructor( 
     private db: DbService, 
     private login: LoginService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -25,13 +28,17 @@ export class HeaderComponent implements OnInit {
     this.settingsObj.snapshotChanges()
     .map( result => {
       
-      this.logo = result.find( element => {
+      const generalSettings = result.find( element => {
         if( element.key === 'generalSettings' )
           return true
       })
       .payload
       .val()
-      .blogLogo;
+
+      this.logo = generalSettings.blogLogo
+      this.blogTitle = generalSettings.blogName
+      
+      this.title.setTitle( generalSettings.blogTitle + ' || ' + this.title.getTitle());
       
       return result
     })
