@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   onLogOut(event){
     event.preventDefault();
-    this.login.logOut('dashboard');
+    this.login.logOut();
   }
 
 }
