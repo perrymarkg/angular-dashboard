@@ -1,7 +1,8 @@
 <div *ngIf="options.show">
   <div class="row">
     <div class="col-md-12">
-      <dashboard-title title="{{ options.pageTitle }}"></dashboard-title>
+      <h3 [dashboardTitle] [title]="options.pageTitle"></h3>
+      <!-- <dashboard-title title="{{ options.pageTitle }}"></dashboard-title> -->
     </div>
   </div>
   <form action="" class="row" (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
