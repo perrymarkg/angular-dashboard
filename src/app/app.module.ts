@@ -26,6 +26,7 @@ import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
 import { BlogComponent } from './dashboard/blog/blog.component';
 import { NewBlogComponent } from './dashboard/blog/new-blog/new-blog.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
+import { HeaderComponent } from './dashboard/header/header.component';
 
 
 const appRoutes: Routes = [
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     BlogComponent,
     NewBlogComponent,
-    SettingsComponent
+    SettingsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

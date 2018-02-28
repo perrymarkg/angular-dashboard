@@ -8,10 +8,7 @@ import { Observable } from "@firebase/util";
 @Injectable()
 export class DbService {
 
-
-    constructor(private af: AngularFireDatabase){
-
-    }
+    constructor(private af: AngularFireDatabase){}
 
     addPage(page: PageModel): ThenableReference{
         return this.af.list('pages').push(page)
@@ -21,14 +18,16 @@ export class DbService {
         return this.af.list(obj);
     }
 
-    updatePage(id: string, page: PageModel){
-        // update
+    updatePage(id: string, page: PageModel):Promise<any> {
         return this.af.list('pages').update(id, page)
-        
     }
 
-    deletePage(id: string){
+    deletePage(id: string):Promise<any> {
         return this.af.list('pages').remove(id)
+    }
+
+    updateSettings(settings){
+        this.af.list('settings').set('settings', settings);
     }
 
 }

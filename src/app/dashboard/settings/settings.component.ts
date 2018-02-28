@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DbService } from '../../services/db.service';
+import { SettingsModel } from '../../models/settings.model';
 
 @Component({
   selector: 'app-settings',
@@ -8,10 +10,18 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SettingsComponent implements OnInit {
   
+  options = {
+    show: false
+  }
+
+  settings: SettingsModel = new SettingsModel();
+  settingsObj = {}
   settingsForm: FormGroup;
-  constructor() { }
+
+  constructor(private db: DbService) { }
 
   ngOnInit() {
+    
     this.settingsForm = new FormGroup({
       generalSettings: new FormGroup({
         blogName: new FormControl('', Validators.required ),
@@ -21,26 +31,32 @@ export class SettingsComponent implements OnInit {
       showBlogName: new FormControl(),
       useSidebar: new FormControl()      
     })
-    this.settingsForm.setValue({
-      generalSettings: {
-        blogName: 'My Blog',
-        blogTitle: 'Angular Blog',
-        blogLogo: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png'
-      },
-      showBlogName: false,
-      useSidebar: true
+
+    this.db.getObject('settings/settings')
+    .snapshotChanges()
+    .map( result => {
+    
+      if( result.length ){
+        result.forEach( item => {
+          this.settingsObj[item.key] = item.payload.val()
+        })
+        Object.assign(this.settings, this.settingsObj)
+
+      }      
+
+      this.settingsForm.setValue(this.settings)
+      this.options.show = true;
+      return result
     })
-    this.settingsForm.patchValue({
-      generalSettings: {
-        blogTitle: 'My Angular Blogs' 
-      }
-    })
+    .subscribe()
+
+    
   }
+
+  
+
   onSubmit(){
-    this.settingsForm.value.generalSettings.blogName
-    this.settingsForm.value.generalSettings.blogTitle
-    this.settingsForm.value.generalSettings.blogLogo
-    this.settingsForm.value.useSidebar
+    this.db.updateSettings(this.settingsForm.value);    
   }
 
 }

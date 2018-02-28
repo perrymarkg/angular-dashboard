@@ -42,12 +42,8 @@ export class NewBlogComponent implements OnInit {
         this.obj = this.db.getObject('pages/'+param.id)
         this.obj.snapshotChanges()
         .subscribe( result => {
-          if( !result.length ){
+          if( !result.length )
             this.router.navigate(['../../'], {relativeTo:this.route})
-            .catch( err => {
-              console.log(err);
-            })
-          }
             
           result.forEach( item => {
             this.pageObj[item.key] = item.payload.val();
@@ -63,15 +59,11 @@ export class NewBlogComponent implements OnInit {
         this.options.show = true;
       }
       return param;
-
     })
-    .subscribe( r => {
-      console.log(this.page)
-    })
+    .subscribe()
   }
 
   onSubmit( form: NgForm ){
-    console.log('submitted')
     if( !form.valid ){
       // send errors  
     }
@@ -81,7 +73,6 @@ export class NewBlogComponent implements OnInit {
     
     if( this.options.editMode )
       this.updatePage(form);
-
       
     
   }
