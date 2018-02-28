@@ -30,4 +30,8 @@ export class DbService {
         this.af.list('settings').set('settings', settings);
     }
 
+    getSettings(){
+        
+    }
+
 }
