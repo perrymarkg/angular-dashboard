@@ -31,9 +31,7 @@ export class HeaderComponent implements OnInit {
       const generalSettings = result.find( element => {
         if( element.key === 'generalSettings' )
           return true
-      })
-      .payload
-      .val()
+      }).payload.val()
 
       this.logo = generalSettings.blogLogo
       this.blogTitle = generalSettings.blogName

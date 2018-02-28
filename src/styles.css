@@ -7,9 +7,19 @@ body {
     background:#eeeeee;
 }
 
+label {
+    font-weight: bold;
+}
 input.form-control {
     max-width:600px;
 }
-dashboard-title {
-    background:green;
+.card-header h1 {
+    display: inline;
+    vertical-align: middle;
+    margin:0 20px 0 0;
+}
+.card-header .btn {
+    display: inline;
+    vertical-align: bottom;
+    margin-right:20px;
 }
