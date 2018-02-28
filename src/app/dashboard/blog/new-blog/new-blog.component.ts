@@ -73,8 +73,14 @@ export class NewBlogComponent implements OnInit {
     
     if( this.options.editMode )
       this.updatePage(form);
-      
-    
+  }
+
+  goBackToBlogListPage(event){
+    event.preventDefault()
+    if( !this.options.editMode )
+      this.router.navigate(['../'], {relativeTo: this.route} )
+    else
+      this.router.navigate(['../blog'], {relativeTo: this.route} )
   }
 
   addPage(form: NgForm){

@@ -3,7 +3,7 @@
     <div class="card" *ngIf="options.show">
 
       <div class="card-header">
-          <button class="btn btn-secondary">Back</button>
+          <button class="btn btn-secondary" (click)="goBackToBlogListPage($event)">Back</button>
           <h1 [dashboardTitle] title="{{options.pageTitle}}"></h1>
       </div>
 
