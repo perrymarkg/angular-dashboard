@@ -1,2 +1,32 @@
 <button class="btn btn-primary" routerLink="/dashboard">Dashboard</button>
 <button class="btn btn-primary" routerLink="/login">Login</button>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+    
+            <div class="header">
+    
+            </div>
+    
+            <hr>
+    
+            <div class="content">
+
+                <div class="card-columns">
+                    <div class="card" *ngFor="let page of pages | async; let i = index" [ngClass]="{'p-3': i % 2}">
+                        <div class="card-body">
+                            <h4>{{ page.title }}</h4>
+                            <em>{{ page.created | date: 'MMM dd yy'}}</em>
+                            <hr>
+                            <div [innerHtml]="page.content"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+    
+        </div>
+    </div>
+</div>
+
