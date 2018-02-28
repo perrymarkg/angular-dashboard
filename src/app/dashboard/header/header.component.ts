@@ -48,4 +48,9 @@ export class HeaderComponent implements OnInit {
     this.login.logOut();
   }
 
+  viewFrontend(event){
+    event.preventDefault()
+    window.open("/", "_blank");
+  }
+
 }
