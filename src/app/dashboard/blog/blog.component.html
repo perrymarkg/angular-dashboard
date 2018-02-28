@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let page of pages | async">
-          <td>{{ page.title }}</td>
+          <td><a routerLink="edit/{{page.key}}">{{ page.title }}</a></td>
           <td>{{ page.created | date: 'yyyy-MM-dd hh:ss'}}</td>
           <td>{{ page.updated | date: 'yyyy-MM-dd hh:ss' }}</td>
           <td>{{ page.active ? 'Active' : 'Inactive'}}</td>

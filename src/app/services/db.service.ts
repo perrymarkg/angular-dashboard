@@ -13,12 +13,22 @@ export class DbService {
 
     }
 
-    addPages(pageData: PageModel): ThenableReference{
-        return this.af.list('pages').push(pageData)
+    addPage(page: PageModel): ThenableReference{
+        return this.af.list('pages').push(page)
     }
 
     getObject(obj: string): AngularFireList<any>{
         return this.af.list(obj);
+    }
+
+    updatePage(id: string, page: PageModel){
+        // update
+        return this.af.list('pages').update(id, page)
+        
+    }
+
+    deletePage(id: string){
+        return this.af.list('pages').remove(id)
     }
 
 }

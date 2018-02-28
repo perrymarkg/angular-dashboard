@@ -34,6 +34,7 @@ const appRoutes: Routes = [
     { path: '', component:HomeComponent },
     { path: 'blog', component:BlogComponent },
     { path: 'blog/new', component: NewBlogComponent },
+    { path: 'blog/edit/:id', component: NewBlogComponent },
     { path: 'settings', component: SettingsComponent }
   ]},
   { path: 'login', component: LoginComponent }
