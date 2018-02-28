@@ -18,6 +18,28 @@ export class DbService {
         return this.af.list(obj);
     }
 
+    getBlogs(){
+        return this.getObject('pages').snapshotChanges().map( items => {
+            return items.map(item => ({ key: item.key, ...item.payload.val() }));
+        })
+    }
+
+    getBlog(id: string){
+        let blog;
+        return this.getObject('pages/'+id).snapshotChanges()
+        .switchMap( items => {
+            if( items.length ){
+                blog = new PageModel()
+                items.forEach( item => {
+                    blog[item.key] = item.payload.val();
+                })
+                
+            }
+            return [blog]
+        })
+        
+    }
+
     updatePage(id: string, page: PageModel):Promise<any> {
         return this.af.list('pages').update(id, page)
     }
