@@ -10,12 +10,18 @@ import { SettingsModel } from "../models/settings.model";
 export class DbService {
 
     settingsEmitter: EventEmitter<any> = new EventEmitter();
-    blogsEmitter: EventEmitter<any> = new EventEmitter()
+    blogsEmitter: EventEmitter<any> = new EventEmitter();
+    blogItemFrontendEmitter: EventEmitter<any> = new EventEmitter();
 
-    constructor(private af: AngularFireDatabase){
+    constructor(private af: AngularFireDatabase){}
+
+    initBlogs(){
         this.getAllBlogs().subscribe( results => {
             this.blogsEmitter.emit(results);
         })
+    }
+    
+    initSettings(){
         this.getSettings().subscribe( results => {
             this.settingsEmitter.emit(results);
         })
@@ -100,6 +106,12 @@ export class DbService {
                 })
             }
             return [settings];
+        })
+    }
+
+    setSelectedBlogFrontend(slug: string){
+        this.getBlogByUrlSlug(slug).subscribe( result => {
+            this.blogItemFrontendEmitter.emit(result)
         })
     }
 

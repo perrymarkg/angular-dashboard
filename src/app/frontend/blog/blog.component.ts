@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PageModel } from '../../models/page.model';
 import { Title } from '@angular/platform-browser';
 import { SettingsModel } from '../../models/settings.model';
+import { Observable } from '@firebase/util';
 
 @Component({
   selector: 'app-blog-index',
@@ -15,29 +16,31 @@ export class BlogComponent implements OnInit {
   blog;
   blogList;
   settings;
-  
-
-  urlSlug: string;
+  colClass = 'col-md-12'
 
   constructor( 
     private db: DbService,
     private route: ActivatedRoute,
     private router: Router,
     private title: Title
-  ) {
-    
-   }
+  ) {}
 
   ngOnInit() {
-    this.urlSlug = this.route.snapshot.params['slug']
-    this.db.getBlogByUrlSlug( this.urlSlug ).subscribe( result => {
-      this.blog = result;
-      this.title.setTitle(this.blog.title)
+    this.db.initSettings();
+    this.db.initBlogs();
+    this.route.params.subscribe( param => {
+      this.db.setSelectedBlogFrontend(param['slug'])
     })
-    this.db.getSettings().subscribe(result => {
+    this.db.blogItemFrontendEmitter.subscribe( result => {
+      this.blog = result;
+    })
+    this.db.blogsEmitter.subscribe( result => {
+      this.blogList = result;
+    })    
+    this.db.settingsEmitter.subscribe( result => {
       this.settings = result;
     })
-    this.blogList = this.db.getAllBlogs();    
+    
   }
 
 }

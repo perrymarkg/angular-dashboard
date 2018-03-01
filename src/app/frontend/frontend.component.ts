@@ -14,15 +14,10 @@ export class FrontendComponent implements OnInit {
   constructor(private db: DbService) { }
 
   ngOnInit() {
+    this.db.initSettings();
     this.db.settingsEmitter.subscribe( result => {
       this.settings = result;
     });
-    /* this.db.settingsEmitter.subscribe( result => {
-      console.log(result);
-    }) */
-    /* this.db.getSettings().subscribe( result => {
-      this.settings = result;
-    }) */
   }
 
 }
