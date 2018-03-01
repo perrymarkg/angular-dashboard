@@ -5,6 +5,7 @@ import { PageModel } from '../../../models/page.model'
 import { DbService } from '../../../services/db.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireList } from 'angularfire2/database';
+import { LoadingService } from '../../../services/loading.service';
 
 @Component({
   selector: 'app-new-blog',
@@ -27,13 +28,15 @@ export class NewBlogComponent implements OnInit {
   constructor(
     private db: DbService, 
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private loading: LoadingService
   ) {}
 
   ngOnInit() {
     
     this.pageId = this.route.snapshot.params['id'];
-    if( this.pageId ){      
+    if( this.pageId ){    
+      this.loading.toggleBlocker(true);  
       this.db.getBlogById(this.pageId).subscribe( result => {
         if( result ){
           this.page = result;
@@ -45,6 +48,7 @@ export class NewBlogComponent implements OnInit {
         else {
           this.router.navigate(['../../'], {relativeTo:this.route})
         }
+        this.loading.toggleBlocker(false);
       })
     }
     else {
@@ -54,6 +58,7 @@ export class NewBlogComponent implements OnInit {
   }
 
   onSubmit( form: NgForm ){
+
     if( !form.valid ){
       // send errors  
     }
@@ -91,8 +96,9 @@ export class NewBlogComponent implements OnInit {
     
     this.db.updatePage(this.pageId, this.page)
     .then( error => {
-      if( !error )
-        this.options.submitDisabled = false;      
+      if( !error ){
+        this.options.submitDisabled = false;
+      }
     })
   }
 

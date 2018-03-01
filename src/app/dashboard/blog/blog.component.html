@@ -9,7 +9,7 @@
         </div>
 
         <div class="card-body">
-          <table *ngIf="pages | async" class="table">
+          <table *ngIf="blogs" class="table">
             <thead>
               <tr>
                 <th>Title</th>
@@ -19,11 +19,11 @@
               </tr>  
             </thead>
             <tbody>
-              <tr *ngFor="let page of pages | async">
-                <td><a routerLink="edit/{{page.key}}">{{ page.title }}</a></td>
-                <td>{{ page.created | date: 'yyyy-MM-dd hh:ss'}}</td>
-                <td>{{ page.updated | date: 'yyyy-MM-dd hh:ss' }}</td>
-                <td>{{ page.active ? 'Active' : 'Inactive'}}</td>
+              <tr *ngFor="let blog of blogs">
+                <td><a routerLink="edit/{{blog.key}}">{{ blog.title }}</a></td>
+                <td>{{ blog.created | date: 'yyyy-MM-dd hh:ss'}}</td>
+                <td>{{ blog.updated | date: 'yyyy-MM-dd hh:ss' }}</td>
+                <td>{{ blog.active ? 'Active' : 'Inactive'}}</td>
               </tr>
             </tbody>
           </table>

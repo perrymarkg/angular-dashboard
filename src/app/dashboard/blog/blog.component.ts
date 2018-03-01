@@ -3,6 +3,7 @@ import { DbService } from '../../services/db.service'
 import { PageModel } from '../../models/page.model'
 import { Observable } from 'rxjs/Observable';
 import { AngularFireList } from 'angularfire2/database';
+import { LoadingService } from '../../services/loading.service';
 
 
 @Component({
@@ -12,12 +13,20 @@ import { AngularFireList } from 'angularfire2/database';
 })
 export class BlogComponent implements OnInit {
 
-  pages: Observable<any> | boolean = false;
+  blogs;
 
-  constructor(private db: DbService) { }
+  constructor(
+    private db: DbService,
+    private loading: LoadingService
+  ) { }
 
   ngOnInit() {
-    this.pages = this.db.getAllBlogs();
+    this.db.initBlogs();
+    this.db.blogsEmitter.subscribe( blogs => {
+      this.blogs = blogs;
+      this.loading.toggleBlocker(false);
+    })
+    
   }
 
   callTest(){

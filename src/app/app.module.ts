@@ -7,6 +7,7 @@ import { TitleDirective } from './dashboard/directives/title.directive';
 
 import { LoginService } from './services/login.service';
 import { DbService } from './services/db.service';
+import { LoadingService } from './services/loading.service';
 
 import { AuthGuard } from './services/authguard.service';
 
@@ -30,6 +31,8 @@ import { HeaderComponent } from './dashboard/header/header.component';
 
 import { IndexComponent } from './frontend/index/index.component';
 import { BlogComponent as BlogFrontendComponent } from './frontend/blog/blog.component';
+import { LoadingComponent } from './ui/loading/loading.component';
+
 
 
 const appRoutes: Routes = [
@@ -63,7 +66,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     HeaderComponent,
     IndexComponent,
-    BlogFrontendComponent
+    BlogFrontendComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +81,8 @@ const appRoutes: Routes = [
   providers: [
     LoginService, 
     AuthGuard, 
-    DbService
+    DbService,
+    LoadingService
   ],
   bootstrap: [AppComponent]
 })

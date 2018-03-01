@@ -3,6 +3,7 @@ import { DbService } from '../../services/db.service';
 import { AngularFireList } from 'angularfire2/database';
 import { LoginService } from '../../services/login.service';
 import { Title } from '@angular/platform-browser';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +20,15 @@ export class HeaderComponent implements OnInit {
   constructor( 
     private db: DbService, 
     private login: LoginService,
-    private title: Title
+    private title: Title,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
     this.db.initSettings();
     this.db.settingsEmitter.subscribe( result => {
       this.settings = result;
+      this.loading.toggleLoading(false);
     })
     
   }
