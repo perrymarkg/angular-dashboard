@@ -4,6 +4,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { PageModel } from '../models/page.model'
 import { ThenableReference } from "@firebase/database-types";
 import { Observable } from "@firebase/util";
+import { SettingsModel } from "../models/settings.model";
 
 @Injectable()
 export class DbService {
@@ -19,21 +20,20 @@ export class DbService {
     }
 
     getBlogs(){
-        return this.getObject('pages').snapshotChanges().map( items => {
+        return this.af.list('pages').snapshotChanges().map( items => {
             return items.map(item => ({ key: item.key, ...item.payload.val() }));
         })
     }
 
     getBlog(id: string){
         let blog;
-        return this.getObject('pages/'+id).snapshotChanges()
+        return this.af.list('pages/'+id).snapshotChanges()
         .switchMap( items => {
             if( items.length ){
                 blog = new PageModel()
                 items.forEach( item => {
                     blog[item.key] = item.payload.val();
                 })
-                
             }
             return [blog]
         })
@@ -53,7 +53,17 @@ export class DbService {
     }
 
     getSettings(){
-        
+        let settings;
+        return this.af.list('settings/settings').snapshotChanges()
+        .switchMap( items => {
+            if( items.length ){
+                settings = new SettingsModel()
+                items.forEach( item => {
+                    settings[item.key] = item.payload.val();
+                })
+            }
+            return [settings];
+        })
     }
 
 }

@@ -9,7 +9,6 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./frontend.component.css']
 })
 export class FrontendComponent implements OnInit {
-
   
   pageObj: AngularFireList<any>;
   pages: Observable<any> | boolean = false;

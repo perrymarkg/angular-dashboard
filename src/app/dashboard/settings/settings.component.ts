@@ -32,7 +32,12 @@ export class SettingsComponent implements OnInit {
       useSidebar: new FormControl()      
     })
 
-    this.db.getObject('settings/settings')
+    this.db.getSettings().subscribe( result => {
+      this.settingsForm.setValue(result);
+      this.options.show = true;
+    })
+    console.log(this.settingsForm.value);
+    /* this.db.getObject('settings/settings')
     .snapshotChanges()
     .map( result => {
     
@@ -48,12 +53,10 @@ export class SettingsComponent implements OnInit {
       this.options.show = true;
       return result
     })
-    .subscribe()
+    .subscribe() */
 
     
   }
-
-  
 
   onSubmit(){
     this.db.updateSettings(this.settingsForm.value);    

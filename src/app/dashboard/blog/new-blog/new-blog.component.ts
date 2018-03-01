@@ -23,8 +23,6 @@ export class NewBlogComponent implements OnInit {
 
   pageId: string;
   page: PageModel = new PageModel();
-  obj: AngularFireList<any>;
-  pageObj = {};
 
   constructor(
     private db: DbService, 
@@ -94,7 +92,7 @@ export class NewBlogComponent implements OnInit {
     this.page.title = form.controls['title'].value
     this.page.content = form.controls['content'].value
     this.page.updated = new Date().getTime()
-
+    
     this.db.updatePage(this.pageId, this.page)
     .then( error => {
       if( !error )
