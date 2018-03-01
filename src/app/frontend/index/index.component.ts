@@ -14,8 +14,8 @@ export class IndexComponent implements OnInit {
   constructor( private db: DbService, private title: Title) { }
 
   ngOnInit() {
+    this.pages = this.db.blogsEmitter
     this.title.setTitle('Home');
-    this.pages = this.db.getAllBlogs();
   }
 
 }

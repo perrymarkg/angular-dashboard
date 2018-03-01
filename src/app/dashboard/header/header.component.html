@@ -1,20 +1,22 @@
 
-<div class="header clearfix">
-  <div class="logo" *ngIf="logo">
-      <img [src]="logo" />
-      <h3>{{ blogTitle }} Admin</h3>
-  </div>
-    <div class="btns">
-      <a href=""
-        class="btn btn-primary btn-sm btn-dark"
-        (click)="viewFrontend($event)"
-      >
-        View Frontend
-      </a>
-      <a href="" 
-        class="btn btn-primary btn-sm btn-dark" 
-        (click)="onLogOut($event)">Log Out</a>
+<div class="header clearfix" >
+  <ng-container *ngIf="settings">
+    <div class="logo" *ngIf="settings.generalSettings.blogLogo" >
+        <img [src]="settings.generalSettings.blogLogo" />
+        <h3>{{ settings.generalSettings.blogName }} Admin</h3>
     </div>
+  </ng-container>
+  <div class="btns">
+    <a href=""
+      class="btn btn-primary btn-sm btn-dark"
+      (click)="viewFrontend($event)"
+    >
+      View Frontend
+    </a>
+    <a href="" 
+      class="btn btn-primary btn-sm btn-dark" 
+      (click)="onLogOut($event)">Log Out</a>
+  </div>
 </div>
 
 

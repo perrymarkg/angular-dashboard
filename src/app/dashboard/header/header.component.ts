@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   logo: string;
   blogTitle: string;
 
+  settings;
   settingsObj: AngularFireList<any>;
   constructor( 
     private db: DbService, 
@@ -24,6 +25,9 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.db.settingsEmitter.subscribe( result => {
+      this.settings = result;
+    })
     this.settingsObj = this.db.getObject('settings/settings');
     this.settingsObj.snapshotChanges()
     .map( result => {

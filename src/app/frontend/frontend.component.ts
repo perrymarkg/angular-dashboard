@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../services/db.service';
 import { SettingsModel } from '../models/settings.model';
+import { Observable } from '@firebase/util';
 
 @Component({
   selector: 'app-frontend',
@@ -13,10 +14,15 @@ export class FrontendComponent implements OnInit {
   constructor(private db: DbService) { }
 
   ngOnInit() {
-    
-    this.db.getSettings().subscribe( result => {
+    this.db.settingsEmitter.subscribe( result => {
       this.settings = result;
-    })
+    });
+    /* this.db.settingsEmitter.subscribe( result => {
+      console.log(result);
+    }) */
+    /* this.db.getSettings().subscribe( result => {
+      this.settings = result;
+    }) */
   }
 
 }

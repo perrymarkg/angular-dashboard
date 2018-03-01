@@ -74,8 +74,6 @@ export class NewBlogComponent implements OnInit {
   }
 
   addPage(form: NgForm){
-    this.page.title = form.controls['title'].value
-    this.page.content = form.controls['content'].value
     this.page.created = new Date().getTime()
     this.page.updated = new Date().getTime()
 
@@ -89,8 +87,6 @@ export class NewBlogComponent implements OnInit {
 
   updatePage(form: NgForm){
     this.options.submitDisabled = true;
-    this.page.title = form.controls['title'].value
-    this.page.content = form.controls['content'].value
     this.page.updated = new Date().getTime()
     
     this.db.updatePage(this.pageId, this.page)

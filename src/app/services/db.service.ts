@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 import { PageModel } from '../models/page.model'
@@ -9,7 +9,17 @@ import { SettingsModel } from "../models/settings.model";
 @Injectable()
 export class DbService {
 
-    constructor(private af: AngularFireDatabase){}
+    settingsEmitter: EventEmitter<any> = new EventEmitter();
+    blogsEmitter: EventEmitter<any> = new EventEmitter()
+
+    constructor(private af: AngularFireDatabase){
+        this.getAllBlogs().subscribe( results => {
+            this.blogsEmitter.emit(results);
+        })
+        this.getSettings().subscribe( results => {
+            this.settingsEmitter.emit(results);
+        })
+    }
 
     getObject(obj: string): AngularFireList<any>{
         return this.af.list(obj);
