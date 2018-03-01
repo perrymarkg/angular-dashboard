@@ -23,8 +23,6 @@ export class NewBlogComponent implements OnInit {
 
   pageId: string;
   page: PageModel = new PageModel();
-  obj: AngularFireList<any>;
-  pageObj = {};
 
   constructor(
     private db: DbService, 
@@ -33,34 +31,26 @@ export class NewBlogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
-    this.route.params
-    .map( param => {
-      
-      if( param.id ){
-        this.pageId = param.id;
-        this.obj = this.db.getObject('pages/'+param.id)
-        this.obj.snapshotChanges()
-        .subscribe( result => {
-          if( !result.length )
-            this.router.navigate(['../../'], {relativeTo:this.route})
-            
-          result.forEach( item => {
-            this.pageObj[item.key] = item.payload.val();
-          })
-          Object.assign(this.page, this.pageObj);
+    
+    this.pageId = this.route.snapshot.params['id'];
+    if( this.pageId ){      
+      this.db.getBlogById(this.pageId).subscribe( result => {
+        if( result ){
+          this.page = result;
           this.options.pageTitle = 'Edit Blog';
           this.options.editMode = true;
           this.options.show = true;
           this.options.btnTitle = 'Update'
-        })
-      }
-      else {
-        this.options.show = true;
-      }
-      return param;
-    })
-    .subscribe()
+        }
+        else {
+          this.router.navigate(['../../'], {relativeTo:this.route})
+        }
+      })
+    }
+    else {
+      this.options.show = true;
+    }
+    
   }
 
   onSubmit( form: NgForm ){
@@ -80,7 +70,7 @@ export class NewBlogComponent implements OnInit {
     if( !this.options.editMode )
       this.router.navigate(['../'], {relativeTo: this.route} )
     else
-      this.router.navigate(['../blog'], {relativeTo: this.route} )
+      this.router.navigate(['../../'], {relativeTo: this.route} )
   }
 
   addPage(form: NgForm){
@@ -102,7 +92,7 @@ export class NewBlogComponent implements OnInit {
     this.page.title = form.controls['title'].value
     this.page.content = form.controls['content'].value
     this.page.updated = new Date().getTime()
-
+    
     this.db.updatePage(this.pageId, this.page)
     .then( error => {
       if( !error )

@@ -12,18 +12,12 @@ import { AngularFireList } from 'angularfire2/database';
 })
 export class BlogComponent implements OnInit {
 
-  object: AngularFireList<any>;
   pages: Observable<any> | boolean = false;
 
   constructor(private db: DbService) { }
 
   ngOnInit() {
-    
-    this.object = this.db.getObject('pages');
-    this.pages = this.object.snapshotChanges().map(actions => {
-      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
-    })
-    
+    this.pages = this.db.getAllBlogs();
   }
 
   callTest(){

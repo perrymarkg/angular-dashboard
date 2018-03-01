@@ -1,0 +1,11 @@
+.header {
+    text-align: center;
+}
+hr {
+    margin:20px 0;
+}
+.btn-dashboard {
+    position: fixed;
+    top:20px;
+    right:20px;
+}

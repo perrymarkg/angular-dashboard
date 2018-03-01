@@ -1,0 +1,27 @@
+
+<div class="row" *ngIf=" blog && settings && blogList">
+  <div [ngClass]="{'col-md-9': settings.useSidebar, 'col-md-12': !settings.useSidebar}">
+      <div class="card" *ngIf="blog">
+        <div class="card-body">
+          <div class="header">
+            <h1>{{ blog.title }}</h1>
+            <em>{{ blog.created | date:  'MMM dd yyyy'}}</em>
+          </div>
+          <img [src]="blog.featured_image" *ngIf="blog.featured_image" class="featured-image" />
+          <div [innerHtml]="blog.content"></div>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-3 sidebar" *ngIf="settings.useSidebar">
+    <div class="card">
+      <div class="card-body">
+        <h3>Other Blogs</h3>
+        <ul *ngFor="let blogItem of blogList | async">
+          <li *ngIf="blogItem.url_slug !== blog.url_slug">
+            <a [routerLink]="['/blog', blogItem.url_slug]">{{ blogItem.title }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
