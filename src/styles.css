@@ -4,9 +4,22 @@ html, body {
     min-height: 100%;
 }
 body {
-    background:#eeeeee;
+    background:#F4F5F7;
 }
 
+label {
+    font-weight: bold;
+}
 input.form-control {
     max-width:600px;
+}
+.card-header h1 {
+    display: inline;
+    vertical-align: middle;
+    margin:0 20px 0 0;
+}
+.card-header .btn {
+    display: inline;
+    vertical-align: bottom;
+    margin-right:20px;
 }

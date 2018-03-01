@@ -1,38 +1,58 @@
 <div class="row">
   <div class="col-md-12">
-    <dashboard-title title="New Blog"></dashboard-title>
-  </div>
-</div>
-<form action="" class="row" (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
-  <div class="col-md-6 col-sm-12">
-      <div class="form-group ">
-        <label for="">Title</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          [(ngModel)]="title" 
-          name="title"
-          required
-          #titleRef="ngModel" />
-          <div [hidden]="titleRef.valid || titleRef.pristine">
-            Title Is Required
-          </div>
+    <div class="card" *ngIf="options.show">
+
+      <div class="card-header">
+          <button class="btn btn-secondary" (click)="goBackToBlogListPage($event)">Back</button>
+          <h1 [dashboardTitle] title="{{options.pageTitle}}"></h1>
       </div>
-  </div>
-  <div class="col-md-12">
-    <div class="form-group">
-      <label for="content">Content</label>
-      <textarea 
-        cols="30" 
-        rows="10" 
-        class="form-control" 
-        [(ngModel)]="content" 
-        name="content"
-        #contentRef="ngModel"
-      ></textarea>
+
+      <div class="card-body">
+        <form action="" class="row" (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
+          <div class="col-md-6 col-sm-12">
+              <div class="form-group ">
+                <label for="">Title</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  [(ngModel)]="page.title" 
+                  name="title"
+                  required
+                  #titleRef="ngModel" />
+                  <div [hidden]="titleRef.valid || titleRef.pristine">
+                    Title Is Required
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea 
+                cols="30" 
+                rows="10" 
+                class="form-control" 
+                [(ngModel)]="page.content" 
+                name="content"
+                #contentRef="ngModel"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 text-right">
+            <button 
+              class="btn btn-primary" 
+              [disabled]="!formRef.valid || options.submitDisabled">
+              {{options.btnTitle}}
+            </button>
+            <button 
+              class="btn btn-secondary" 
+              [hidden]="!options.editMode" 
+              (click)="deletePage($event)">
+              Delete
+            </button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
-  <div class="col-md-12 text-right">
-    <button class="btn btn-primary" [disabled]="!formRef.valid">Save</button>
-  </div>
-</form>
+</div>

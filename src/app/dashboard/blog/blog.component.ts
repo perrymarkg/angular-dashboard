@@ -18,8 +18,12 @@ export class BlogComponent implements OnInit {
   constructor(private db: DbService) { }
 
   ngOnInit() {
+    
     this.object = this.db.getObject('pages');
-    this.pages = this.object.valueChanges()
+    this.pages = this.object.snapshotChanges().map(actions => {
+      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+    })
+    
   }
 
   callTest(){

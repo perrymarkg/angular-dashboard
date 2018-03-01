@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +26,7 @@ import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
 import { BlogComponent } from './dashboard/blog/blog.component';
 import { NewBlogComponent } from './dashboard/blog/new-blog/new-blog.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
+import { HeaderComponent } from './dashboard/header/header.component';
 
 
 const appRoutes: Routes = [
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
     { path: '', component:HomeComponent },
     { path: 'blog', component:BlogComponent },
     { path: 'blog/new', component: NewBlogComponent },
+    { path: 'blog/edit/:id', component: NewBlogComponent },
     { path: 'settings', component: SettingsComponent }
   ]},
   { path: 'login', component: LoginComponent }
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     BlogComponent,
     NewBlogComponent,
-    SettingsComponent
+    SettingsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,11 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
-  providers: [LoginService, AuthGuard, DbService],
+  providers: [
+    LoginService, 
+    AuthGuard, 
+    DbService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

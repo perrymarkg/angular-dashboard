@@ -1,21 +1,32 @@
-import { Directive, ElementRef, OnInit, Renderer2, Input } from '@angular/core';
+import { Directive, ElementRef, OnInit, Renderer2, Input, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Directive({
-    selector: 'dashboard-title' 
+    selector: '[dashboardTitle]' 
 })
-export class TitleDirective implements OnInit{
+export class TitleDirective implements OnInit, OnChanges{
     @Input() title: string;
-    constructor(private el: ElementRef, private router: Router, private render: Renderer2){}
+    @Input() dashboardTitle: string;
+
+    constructor(
+        private el: ElementRef, 
+        private router: Router, 
+        private render: Renderer2
+    ){}
+
     ngOnInit(){
-        this.getCurrentUrl();
-        if( this.title )
-            this.render.setProperty(this.el.nativeElement, 'innerHTML', '<h2>' + this.title + '</h2>');
-        else
-            this.render.setProperty(this.el.nativeElement, 'innerHTML', '<h2>' + this.getCurrentUrl() + '</h2>');
+        if( !this.title )
+            this.render.setProperty( this.el.nativeElement, 'innerHTML', this.getCurrentUrl() );
+    }
+    ngOnChanges(){
+        this.render.setProperty( this.el.nativeElement, 'innerHTML', this.title );
     }
     
     getCurrentUrl(){
-        return this.router.url.split('/').pop();
+        return this.capitalize( this.router.url.split('/').pop() );
+    }
+
+    capitalize(title: string){
+        return title.charAt(0).toUpperCase() + title.slice(1);
     }
 }
