@@ -22,4 +22,8 @@ export class BlogComponent implements OnInit {
     this.pages = this.object.valueChanges()
   }
 
+  callTest(){
+
+  }
+
 }
