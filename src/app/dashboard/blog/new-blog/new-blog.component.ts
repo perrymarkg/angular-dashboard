@@ -34,7 +34,7 @@ export class NewBlogComponent implements OnInit {
     
     this.pageId = this.route.snapshot.params['id'];
     if( this.pageId ){      
-      this.db.getBlog(this.pageId).subscribe( result => {
+      this.db.getBlogById(this.pageId).subscribe( result => {
         if( result ){
           this.page = result;
           this.options.pageTitle = 'Edit Blog';

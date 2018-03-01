@@ -9,21 +9,45 @@
 
       <div class="card-body">
         <form action="" class="row" (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
-          <div class="col-md-6 col-sm-12">
-              <div class="form-group ">
-                <label for="">Title</label>
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  [(ngModel)]="page.title" 
-                  name="title"
-                  required
-                  #titleRef="ngModel" />
-                  <div [hidden]="titleRef.valid || titleRef.pristine">
-                    Title Is Required
-                  </div>
-              </div>
+          <div class="col-md-12">
+            <div class="form-group ">
+              <label for="">Title</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                [(ngModel)]="page.title" 
+                name="title"
+                required
+                #titleRef="ngModel" />
+                <div [hidden]="titleRef.valid || titleRef.pristine">
+                  Title Is Required
+                </div>
+            </div>
           </div>
+          <div class="col-md-12">
+            <div class="form-group ">
+              <label for="">Featured Image URL</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                [(ngModel)]="page.featured_image" 
+                name="featured_image"
+                required
+                #featuredImageRef="ngModel" />                
+            </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="">Status</label>
+            <select 
+              name="active" 
+              class="form-control"
+              [(ngModel)]="page.active" >
+              <option [value]="true">Active</option>
+              <option [value]="false">Inactive</option>
+            </select>
+          </div>
+        </div>
           <div class="col-md-12">
             <div class="form-group">
               <label for="content">Content</label>

@@ -17,7 +17,7 @@ export class BlogComponent implements OnInit {
   constructor(private db: DbService) { }
 
   ngOnInit() {
-    this.pages = this.db.getBlogs();
+    this.pages = this.db.getAllBlogs();
   }
 
 }

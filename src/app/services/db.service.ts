@@ -11,21 +11,31 @@ export class DbService {
 
     constructor(private af: AngularFireDatabase){}
 
-    addPage(page: PageModel): ThenableReference{
-        return this.af.list('pages').push(page)
-    }
-
     getObject(obj: string): AngularFireList<any>{
         return this.af.list(obj);
     }
 
-    getBlogs(){
+    addPage(page: PageModel): ThenableReference{
+        page.url_slug = this.stringToUrlSlug(page.url_slug);
+        return this.af.list('pages').push(page)
+    }
+
+    updatePage(id: string, page: PageModel):Promise<any> {
+        page.url_slug = this.stringToUrlSlug(page.url_slug);
+        return this.af.list('pages').update(id, page)
+    }
+
+    deletePage(id: string):Promise<any> {
+        return this.af.list('pages').remove(id)
+    }
+
+    getAllBlogs(){
         return this.af.list('pages').snapshotChanges().map( items => {
             return items.map(item => ({ key: item.key, ...item.payload.val() }));
         })
     }
 
-    getBlog(id: string){
+    getBlogById(id: string){
         let blog;
         return this.af.list('pages/'+id).snapshotChanges()
         .switchMap( items => {
@@ -37,15 +47,19 @@ export class DbService {
             }
             return [blog]
         })
-        
     }
 
-    updatePage(id: string, page: PageModel):Promise<any> {
-        return this.af.list('pages').update(id, page)
-    }
-
-    deletePage(id: string):Promise<any> {
-        return this.af.list('pages').remove(id)
+    getBlogByTitle(title: string){
+        let blog;
+        return this.af.list('pages', ref => ref.orderByChild('title').equalTo(title) )
+        .snapshotChanges().switchMap( items => {
+            if( items.length ){
+                blog = new PageModel();
+                Object.assign(blog, {...items}[0].payload.val()) // blog = {...items}[0].payload.val() not working.. Why?
+                return [blog]
+            }
+            return [blog];
+        })
     }
 
     updateSettings(settings){
@@ -64,6 +78,18 @@ export class DbService {
             }
             return [settings];
         })
+    }
+
+    stringToUrlSlug(url){
+        return url
+                .toString()
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .replace(/[^\w\-]+/g, "")
+                .replace(/\-\-+/g, "-")
+                .replace(/^-+/, "")
+                .replace(/-+$/, "");
     }
 
 }
