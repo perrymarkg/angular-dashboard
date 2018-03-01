@@ -62,6 +62,19 @@ export class DbService {
         })
     }
 
+    getBlogByUrlSlug(urlSlug: string){
+        let blog;
+        return this.af.list('pages', ref => ref.orderByChild('url_slug').equalTo(urlSlug) )
+        .snapshotChanges().switchMap( items => {
+            if( items.length ){
+                blog = new PageModel();
+                Object.assign(blog, {...items}[0].payload.val()) // blog = {...items}[0].payload.val() not working.. Why?
+                return [blog]
+            }
+            return [blog];
+        })
+    }
+
     updateSettings(settings){
         this.af.list('settings').set('settings', settings);
     }

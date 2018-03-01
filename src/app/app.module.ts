@@ -27,10 +27,15 @@ import { BlogComponent } from './dashboard/blog/blog.component';
 import { NewBlogComponent } from './dashboard/blog/new-blog/new-blog.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { HeaderComponent } from './dashboard/header/header.component';
+import { IndexComponent } from './frontend/index/index.component';
+import { BlogComponent as BlogFrontendComponent } from './frontend/blog/blog.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: FrontendComponent },
+  { path: '', component: FrontendComponent, children: [
+      {path: '', component: IndexComponent },
+      {path: 'blog/:slug', component: BlogFrontendComponent }
+  ]},
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
     { path: '', component:HomeComponent },
     { path: 'blog', component:BlogComponent },
@@ -55,7 +60,9 @@ const appRoutes: Routes = [
     BlogComponent,
     NewBlogComponent,
     SettingsComponent,
-    HeaderComponent
+    HeaderComponent,
+    IndexComponent,
+    BlogFrontendComponent
   ],
   imports: [
     BrowserModule,

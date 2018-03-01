@@ -2,6 +2,7 @@ export class PageModel {
     parent: string  = '';
     title: string = '';
     content: string = '';
+    excerpt: string = '';
     created: number = 0;
     updated: number = 0;
     active: boolean = true;

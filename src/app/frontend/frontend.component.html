@@ -1,31 +1,20 @@
-<button class="btn btn-primary" routerLink="/dashboard">Dashboard</button>
-<button class="btn btn-primary" routerLink="/login">Login</button>
+<button class="btn btn-primary btn-sm btn-dashboard" routerLink="/dashboard">View Dashboard</button>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
     
             <div class="header">
-    
+                <ng-container *ngIf="settings">
+                    <a [routerLink]="['/']"><img [src]="settings.generalSettings.blogLogo" /></a>
+                    <h4 *ngIf="settings.showBlogName">{{settings.generalSettings.blogName}}</h4>
+                </ng-container>
             </div>
     
             <hr>
     
             <div class="content">
-
-                <div class="card-columns">
-                    <ng-container *ngFor="let page of pages | async; let i = index">
-                    <div class="card" [ngClass]="{'p-3': i % 2}" *ngIf="page.active !== 'false' ">
-                        <div class="card-body">
-                            <h4>{{ page.title }}</h4>
-                            <em>{{ page.created | date: 'MMM dd yy'}}</em>
-                            <hr>
-                            <div [innerHtml]="page.content"></div>
-                        </div>
-                    </div>
-                    </ng-container>
-                </div>
-                
+                <router-outlet></router-outlet>                                
             </div>
     
         </div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../services/db.service';
-import { AngularFireList } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
-import { PageModel } from '../models/page.model';
+import { SettingsModel } from '../models/settings.model';
 
 @Component({
   selector: 'app-frontend',
@@ -11,20 +9,14 @@ import { PageModel } from '../models/page.model';
 })
 export class FrontendComponent implements OnInit {
   
-  pageObj: AngularFireList<any>;
-  pages: Observable<any> | boolean = false;
-
+  settings: SettingsModel;
   constructor(private db: DbService) { }
 
   ngOnInit() {
-    this.db.getBlogByTitle('Here we').subscribe( result => {
-      console.log(result);
+    
+    this.db.getSettings().subscribe( result => {
+      this.settings = result;
     })
-    this.pages = this.db.getAllBlogs();
-    /* this.pageObj = this.db.getObject('pages')
-    this.pages = this.pageObj.snapshotChanges().map(actions => {
-      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
-    }) */
   }
 
 }
