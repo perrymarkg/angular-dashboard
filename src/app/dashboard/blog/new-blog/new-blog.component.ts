@@ -7,11 +7,13 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireList } from 'angularfire2/database';
 import { LoadingService } from '../../../services/loading.service';
 import { NoticeService } from '../../../services/notice.service';
+import { fadeInOutCustom } from '../../../animations/animations';
 
 @Component({
   selector: 'app-new-blog',
   templateUrl: './new-blog.component.html',
-  styleUrls: ['./new-blog.component.css']
+  styleUrls: ['./new-blog.component.css'],
+  animations:[fadeInOutCustom()]
 })
 export class NewBlogComponent implements OnInit {
 
@@ -80,6 +82,7 @@ export class NewBlogComponent implements OnInit {
   }
 
   addPage(form: NgForm){
+    window.scrollTo(0, 0)
     this.page.created = new Date().getTime()
     this.page.updated = new Date().getTime()
 
@@ -96,6 +99,7 @@ export class NewBlogComponent implements OnInit {
   }
 
   updatePage(form: NgForm){
+    
     this.options.submitDisabled = true;
     this.page.updated = new Date().getTime()
     

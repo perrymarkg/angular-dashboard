@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { LoadingService } from './services/loading.service';
 import { DbService } from './services/db.service';
+import { fadeInOut } from './animations/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [fadeInOut]
 })
 export class AppComponent {
   title = 'app';

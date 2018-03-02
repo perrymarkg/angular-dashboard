@@ -4,12 +4,14 @@ import { PageModel } from '../../models/page.model'
 import { Observable } from 'rxjs/Observable';
 import { AngularFireList } from 'angularfire2/database';
 import { LoadingService } from '../../services/loading.service';
+import { fadeInOutCustom } from '../../animations/animations';
 
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  styleUrls: ['./blog.component.css'],
+  animations:[fadeInOutCustom()]
 })
 export class BlogComponent implements OnInit {
 

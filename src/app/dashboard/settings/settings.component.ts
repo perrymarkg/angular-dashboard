@@ -3,11 +3,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DbService } from '../../services/db.service';
 import { SettingsModel } from '../../models/settings.model';
 import { NoticeService } from '../../services/notice.service';
+import { fadeInOutCustom } from '../../animations/animations';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  styleUrls: ['./settings.component.css'],
+  animations: [fadeInOutCustom()]
 })
 export class SettingsComponent implements OnInit {
   
