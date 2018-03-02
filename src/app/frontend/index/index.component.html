@@ -1,17 +1,17 @@
 <div class="card-columns">
-    <ng-container *ngIf="pages">
-    <ng-container *ngFor="let page of pages; let i = index">
-    <div class="card" [ngClass]="{'p-3': i % 2}" *ngIf="page.active !== 'false' ">
-        <a [routerLink]="['/blog', page.url_slug]" 
+    <ng-container *ngIf="blogs">
+    <ng-container *ngFor="let blog of blogs; let i = index">
+    <div class="card" [ngClass]="{'p-3': i % 2}" *ngIf="blog.active !== 'false' ">
+        <a [routerLink]="['/blog', blog.url_slug]" 
             class="card-img-top"
-            *ngIf="page.featured_image" >
-            <img [src]="page.featured_image"  />
+            *ngIf="blog.featured_image" >
+            <img [src]="blog.featured_image"  />
         </a>
         <div class="card-body">
-            <h4><a [routerLink]="['/blog', page.url_slug]">{{ page.title }}</a></h4>
-            <em>{{ page.created | date: 'MMM dd yyyy'}}</em>
+            <h4><a [routerLink]="['/blog', blog.url_slug]">{{ blog.title }}</a></h4>
+            <em>{{ blog.created | date: 'MMM dd yyyy'}}</em>
             <hr>
-            <div [innerHtml]="page.excerpt + '...'"></div>
+            <div [innerHtml]="blog.excerpt + '...'"></div>
         </div>
     </div>
     </ng-container>

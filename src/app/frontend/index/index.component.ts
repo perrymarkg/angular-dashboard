@@ -10,16 +10,18 @@ import { Title } from '@angular/platform-browser';
 })
 export class IndexComponent implements OnInit {
 
-  pages;
+  blogs;
   constructor( private db: DbService, private title: Title) { }
 
   ngOnInit() {
+    if( Object.keys(this.db.data.blogs).length )
+      this.blogs = this.db.data.blogs
+
     this.db.dataEmitter.subscribe( results => {
-      if( results.blogs.length !== 0){
-        this.pages = results.blogs;
+      if( Object.keys(results.blogs).length ){
+        this.blogs = results.blogs;
       }
     })
-    //this.pages = this.db.blogsEmitter
     this.title.setTitle('Home');
   }
 
