@@ -3,8 +3,9 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 import { PageModel } from '../models/page.model'
 import { ThenableReference } from "@firebase/database-types";
-import { Observable } from "@firebase/util";
+import { Observable } from "rxjs/Observable";
 import { SettingsModel } from "../models/settings.model";
+
 
 @Injectable()
 export class DbService {
@@ -43,12 +44,12 @@ export class DbService {
     }
 
     addPage(page: PageModel): ThenableReference{
-        page.url_slug = this.stringToUrlSlug(page.url_slug);
+        page.url_slug = this.stringToUrlSlug(page.title);
         return this.af.list('pages').push(page)
     }
 
     updatePage(id: string, page: PageModel):Promise<any> {
-        page.url_slug = this.stringToUrlSlug(page.url_slug);
+        page.url_slug = this.stringToUrlSlug(page.title);
         return this.af.list('pages').update(id, page)
     }
 

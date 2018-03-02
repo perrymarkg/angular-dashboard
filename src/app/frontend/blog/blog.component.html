@@ -17,12 +17,12 @@
   <div class="col-md-3 sidebar" *ngIf="settings && settings.useSidebar">
     <div class="card">
       <div class="card-body">
-        <h3>Other Blogs</h3>
+        <h3>Blogs</h3>
         
         <!-- Temporary, fix to work with async -->
         <ul *ngIf="blogList">
           <ng-container *ngFor="let blogItem of blogList">
-          <li *ngIf="blogItem.url_slug !== blog.url_slug">
+          <li [ngClass]="{'active': blogItem.url_slug === slug}">
             <a [routerLink]="['/blog', blogItem.url_slug]">{{ blogItem.title }}</a>
           </li>
           </ng-container>

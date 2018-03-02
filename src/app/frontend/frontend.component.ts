@@ -11,17 +11,23 @@ import { LoadingService } from '../services/loading.service';
 })
 export class FrontendComponent implements OnInit {
   
-  settings: SettingsModel;
+  settings;
   constructor(
     private db: DbService,
     private loading: LoadingService
   ) { }
 
   ngOnInit() {
-    this.db.initSettings();
-    this.db.dataEmitter.subscribe( results => {
-      this.settings = results.settings;
+    if( Object.keys(this.db.data.settings).length ){
+      this.settings = this.db.data.settings;      
       this.loading.toggleLoading(false);
+    }
+
+    this.db.dataEmitter.subscribe( results => {
+      if( Object.keys(results.settings).length ){
+        this.settings = results.settings;
+        this.loading.toggleLoading(false);
+      }
     })
     
   }
