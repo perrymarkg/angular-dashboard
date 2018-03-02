@@ -3,20 +3,21 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Custom Directives
 import { TitleDirective } from './dashboard/directives/title.directive';
-
+// Custom Services
+import { NoticeService } from './services/notice.service';
 import { LoginService } from './services/login.service';
 import { DbService } from './services/db.service';
 import { LoadingService } from './services/loading.service';
-
+// Custom Guard
 import { AuthGuard } from './services/authguard.service';
-
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { env } from './env/env';
-
+// Dashboard
 import { AppComponent } from './app.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { LoginComponent } from './login/login.component';
@@ -28,10 +29,12 @@ import { BlogComponent } from './dashboard/blog/blog.component';
 import { NewBlogComponent } from './dashboard/blog/new-blog/new-blog.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { HeaderComponent } from './dashboard/header/header.component';
-
+// Frontend
 import { IndexComponent } from './frontend/index/index.component';
 import { BlogComponent as BlogFrontendComponent } from './frontend/blog/blog.component';
+// General
 import { LoadingComponent } from './ui/loading/loading.component';
+
 
 
 
@@ -82,7 +85,8 @@ const appRoutes: Routes = [
     LoginService, 
     AuthGuard, 
     DbService,
-    LoadingService
+    LoadingService,
+    NoticeService
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ import { DbService } from '../../../services/db.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireList } from 'angularfire2/database';
 import { LoadingService } from '../../../services/loading.service';
+import { NoticeService } from '../../../services/notice.service';
 
 @Component({
   selector: 'app-new-blog',
@@ -30,7 +31,8 @@ export class NewBlogComponent implements OnInit {
     private db: DbService, 
     private route: ActivatedRoute,
     private router: Router,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private notice: NoticeService
   ) {}
 
   ngOnInit() {
@@ -82,7 +84,11 @@ export class NewBlogComponent implements OnInit {
     this.db.addPage(this.page).then( r => {
       if( r ){
         form.reset()
+        this.notice.setNotice('Page added succesfully!')
         this.router.navigate(['../edit/'+ r.key], {relativeTo: this.route} );
+      }
+      else {
+        this.notice.setNotice('Unable to add page')
       }
     })
   }
@@ -94,6 +100,7 @@ export class NewBlogComponent implements OnInit {
     this.db.updatePage(this.pageId, this.page)
     .then( error => {
       if( !error ){
+        this.notice.setNotice('Page updated succesfully!')
         this.options.submitDisabled = false;
       }
     })

@@ -1,9 +1,28 @@
+
 .wrapper {
     height: 100%;
 }
 .page {
     height: 100%;
     position: relative;
+}
+.notice-message {
+    min-width: 320px;
+    position: fixed;
+    top:100px;
+    right:35px;
+    z-index: 1000;
+    text-align: left;
+    transition: fadeInOut 5s linear;
+}
+.notice-message strong {
+    margin-right:30px;
+}
+.notice-message button {
+    position: absolute;
+    font-size: 24px;
+    top:0;
+    right:10px;
 }
 
 .sidebar {
@@ -23,5 +42,18 @@
     margin-left:240px;
 }
 .content-wrapper {
+    position: relative;
     padding:20px;
+}
+
+@keyframes fadeInOut{
+    from {
+        opacity: 0;
+        top: -500px;
+      }
+      to {
+          position: relative;
+        opacity: 1;
+        top: 0px;
+      }
 }

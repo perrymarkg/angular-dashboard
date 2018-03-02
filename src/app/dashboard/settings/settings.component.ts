@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DbService } from '../../services/db.service';
 import { SettingsModel } from '../../models/settings.model';
+import { NoticeService } from '../../services/notice.service';
 
 @Component({
   selector: 'app-settings',
@@ -18,7 +19,7 @@ export class SettingsComponent implements OnInit {
   settingsObj = {}
   settingsForm: FormGroup;
 
-  constructor(private db: DbService) { }
+  constructor(private db: DbService, private notice: NoticeService) { }
 
   ngOnInit() {
     
@@ -47,6 +48,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onSubmit(){
+    this.notice.setNotice('Settings updated successfully!')
     this.db.updateSettings(this.settingsForm.value);    
   }
 
