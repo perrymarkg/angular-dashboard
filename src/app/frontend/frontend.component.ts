@@ -3,11 +3,13 @@ import { DbService } from '../services/db.service';
 import { SettingsModel } from '../models/settings.model';
 import { Observable } from '@firebase/util';
 import { LoadingService } from '../services/loading.service';
+import { flyInFromTop, grow } from '../animations/animations';
 
 @Component({
   selector: 'app-frontend',
   templateUrl: './frontend.component.html',
-  styleUrls: ['./frontend.component.css']
+  styleUrls: ['./frontend.component.css'],
+  animations:[flyInFromTop, grow]
 })
 export class FrontendComponent implements OnInit {
   

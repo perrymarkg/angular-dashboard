@@ -5,11 +5,13 @@ import { LoginService } from '../../services/login.service';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../services/loading.service';
 import { Router } from '@angular/router';
+import { flyInFromTop } from '../../animations/animations';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  animations: [flyInFromTop]
 })
 export class HeaderComponent implements OnInit {
 

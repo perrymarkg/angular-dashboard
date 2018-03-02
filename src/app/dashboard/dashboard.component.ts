@@ -3,13 +3,13 @@ import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../services/loading.service';
 import { NoticeService } from '../services/notice.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { fadeInOut } from '../animations/animations'
+import { fadeInOut, flyInFromLeft } from '../animations/animations'
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  animations: [fadeInOut]
+  animations: [fadeInOut, flyInFromLeft]
 })
 export class DashboardComponent implements OnInit {
 

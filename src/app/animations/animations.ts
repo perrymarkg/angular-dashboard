@@ -1,4 +1,4 @@
-import { trigger, state, style, transition, animate } from '@angular/core';
+import { trigger, state, style, transition, animate, group, query, stagger } from '@angular/animations';
 
 export const fadeInOut = trigger('fadeInOut', [
     transition(':enter', [   // :enter is alias to 'void => *'
@@ -20,10 +20,26 @@ export const fadeInOutCustom = (enterSpeed = '500ms', leaveSpeed = '500ms') => t
     ])
 ])
 
-export const flyInFromLeft =  trigger('flyInOut', [
+export const flyInFromLeft = trigger('flyInFromLeft', [
     state('in', style({transform: 'translateX(0)'})),
     transition('void => *', [
       style({transform: 'translateX(-100%)'}),
       animate('200ms')
     ])    
+])
+
+export const flyInFromTop = trigger('flyInFromTop', [
+  state('in', style({transform: 'translateY(0)'})),
+  transition('void => *', [
+    style({transform: 'translateY(-100%)'}),
+    animate('200ms')
+  ])    
+])
+
+export const grow = trigger('grow', [
+  state('in', style({transform: 'scale(1)'})),
+  transition('void => *', [
+    style({transform: 'scale(.1)'}),
+    animate('200ms')
   ])
+])

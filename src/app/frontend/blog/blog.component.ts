@@ -5,11 +5,13 @@ import { PageModel } from '../../models/page.model';
 import { Title } from '@angular/platform-browser';
 import { SettingsModel } from '../../models/settings.model';
 import { Observable } from 'rxjs/Observable';
+import { fadeInOut } from '../../animations/animations';
 
 @Component({
   selector: 'app-blog-index',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  styleUrls: ['./blog.component.css'],
+  animations:[fadeInOut]
 })
 export class BlogComponent implements OnInit {
 
@@ -45,6 +47,7 @@ export class BlogComponent implements OnInit {
         this.settings = result['settings']
 
       if( this.slug && this.blogList ){
+        
         this.blog = this.findBlogItem(this.slug)
         if( !this.blog )
           this.router.navigate(['../../'], {relativeTo: this.route})

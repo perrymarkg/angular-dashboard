@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { fadeInOut, fadeInOutCustom } from '../../animations/animations';
+import { fadeInOutCustom } from '../../animations/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  animations: [fadeInOut, fadeInOutCustom()]
+  animations: [fadeInOutCustom()]
 })
 export class HomeComponent implements OnInit {
 

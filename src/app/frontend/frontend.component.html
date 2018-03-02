@@ -4,13 +4,11 @@
     <div class="row">
         <div class="col-md-12">
     
-            <div class="header">
-                <ng-container *ngIf="settings">
-                    <a [routerLink]="['/']" *ngIf="settings.generalSettings">
-                        <img [src]="settings.generalSettings.blogLogo" />
-                    </a>
-                    <h4 *ngIf="settings.showBlogName">{{settings.generalSettings.blogName}}</h4>
-                </ng-container>
+            <div class="header" *ngIf="settings" [@grow]>
+                <a [routerLink]="['/']" *ngIf="settings.generalSettings">
+                    <img [src]="settings.generalSettings.blogLogo" />
+                </a>
+                <h4 *ngIf="settings.showBlogName">{{settings.generalSettings.blogName}}</h4>
             </div>
     
             <hr>

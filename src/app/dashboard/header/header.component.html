@@ -1,5 +1,5 @@
 
-<div class="header clearfix" >
+<div class="header clearfix" [@flyInFromTop]>
   <ng-container *ngIf="settings">
     <div class="logo" *ngIf="settings.generalSettings.blogLogo" >
         <img [src]="settings.generalSettings.blogLogo" />

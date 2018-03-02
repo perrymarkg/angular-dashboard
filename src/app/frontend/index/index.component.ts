@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DbService } from '../../services/db.service';
 import { Observable } from 'rxjs/Observable';
 import { Title } from '@angular/platform-browser';
+import { fadeInOut } from '../../animations/animations';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  styleUrls: ['./index.component.css'],
+  animations: [fadeInOut]
 })
 export class IndexComponent implements OnInit {
 

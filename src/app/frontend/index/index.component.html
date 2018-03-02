@@ -1,7 +1,7 @@
 <div class="card-columns">
     <ng-container *ngIf="blogs">
     <ng-container *ngFor="let blog of blogs; let i = index">
-    <div class="card" [ngClass]="{'p-3': i % 2}" *ngIf="blog.active !== 'false' ">
+    <div class="card" [ngClass]="{'p-3': i % 2}" *ngIf="blog.active !== 'false' " [@fadeInOut]>
         <a [routerLink]="['/blog', blog.url_slug]" 
             class="card-img-top"
             *ngIf="blog.featured_image" >
