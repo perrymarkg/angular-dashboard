@@ -6,7 +6,9 @@
     
             <div class="header">
                 <ng-container *ngIf="settings">
-                    <a [routerLink]="['/']"><img [src]="settings.generalSettings.blogLogo" /></a>
+                    <a [routerLink]="['/']" *ngIf="settings.generalSettings">
+                        <img [src]="settings.generalSettings.blogLogo" />
+                    </a>
                     <h4 *ngIf="settings.showBlogName">{{settings.generalSettings.blogName}}</h4>
                 </ng-container>
             </div>

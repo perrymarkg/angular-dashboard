@@ -32,29 +32,17 @@ export class SettingsComponent implements OnInit {
       useSidebar: new FormControl()      
     })
 
-    this.db.getSettings().subscribe( result => {
-      this.settingsForm.setValue(result);
+    if( Object.keys(this.db.data.settings).length ){
+      this.settingsForm.setValue( this.db.data.settings )
       this.options.show = true;
+    }
+
+    this.db.dataEmitter.subscribe( results => {
+      if( Object.keys(this.db.data.settings).length ){
+        this.settingsForm.setValue(this.db.data.settings)
+        this.options.show = true;
+      }        
     })
-    console.log(this.settingsForm.value);
-    /* this.db.getObject('settings/settings')
-    .snapshotChanges()
-    .map( result => {
-    
-      if( result.length ){
-        result.forEach( item => {
-          this.settingsObj[item.key] = item.payload.val()
-        })
-        Object.assign(this.settings, this.settingsObj)
-
-      }      
-
-      this.settingsForm.setValue(this.settings)
-      this.options.show = true;
-      return result
-    })
-    .subscribe() */
-
     
   }
 

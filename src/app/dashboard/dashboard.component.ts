@@ -9,14 +9,12 @@ import { LoadingService } from '../services/loading.service';
 })
 export class DashboardComponent implements OnInit {
 
-  showBlocker: boolean = true;
-
   constructor(private title: Title, private loading: LoadingService) { 
     this.title.setTitle('Dashboard')
   }
 
   ngOnInit() {
-    this.loading.toggleBlockerEmitter.subscribe( val => this.showBlocker = val)
+    
   }
 
 }

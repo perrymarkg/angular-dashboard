@@ -9,6 +9,13 @@ import { SettingsModel } from "../models/settings.model";
 @Injectable()
 export class DbService {
 
+    data = {
+        blogs: [],
+        settings: [],
+        selectedBlog: []
+    }
+
+    dataEmitter: EventEmitter<any> = new EventEmitter();
     settingsEmitter: EventEmitter<any> = new EventEmitter();
     blogsEmitter: EventEmitter<any> = new EventEmitter();
     blogItemFrontendEmitter: EventEmitter<any> = new EventEmitter();
@@ -17,12 +24,16 @@ export class DbService {
 
     initBlogs(){
         this.getAllBlogs().subscribe( results => {
+            this.data.blogs = results;
+            this.dataEmitter.emit(this.data);
             this.blogsEmitter.emit(results);
         })
     }
     
     initSettings(){
         this.getSettings().subscribe( results => {
+            this.data.settings = results;
+            this.dataEmitter.emit(this.data);
             this.settingsEmitter.emit(results);
         })
     }

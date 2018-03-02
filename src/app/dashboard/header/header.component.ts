@@ -12,11 +12,8 @@ import { LoadingService } from '../../services/loading.service';
 })
 export class HeaderComponent implements OnInit {
 
-  logo: string;
-  blogTitle: string;
-
   settings;
-  settingsObj: AngularFireList<any>;
+
   constructor( 
     private db: DbService, 
     private login: LoginService,
@@ -25,11 +22,17 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.db.initSettings();
-    this.db.settingsEmitter.subscribe( result => {
-      this.settings = result;
-      this.loading.toggleLoading(false);
+    if( this.db.data.settings.length )
+      this.settings = this.db.data.settings;
+
+    this.db.dataEmitter.subscribe( result => {
+     
+      if( Object.keys(result.settings).length ){
+        this.settings = result.settings
+        this.loading.toggleLoading(false);
+      }
     })
+    
     
   }
 

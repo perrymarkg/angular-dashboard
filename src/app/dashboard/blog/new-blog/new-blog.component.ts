@@ -24,6 +24,7 @@ export class NewBlogComponent implements OnInit {
 
   pageId: string;
   page: PageModel = new PageModel();
+  blogs;
 
   constructor(
     private db: DbService, 
@@ -34,9 +35,10 @@ export class NewBlogComponent implements OnInit {
 
   ngOnInit() {
     
+       
     this.pageId = this.route.snapshot.params['id'];
+
     if( this.pageId ){    
-      this.loading.toggleBlocker(true);  
       this.db.getBlogById(this.pageId).subscribe( result => {
         if( result ){
           this.page = result;
@@ -111,6 +113,11 @@ export class NewBlogComponent implements OnInit {
 
       this.options.submitDisabled = false;
     })
+  }
+
+  findPageItem(itemKey: string){
+    console.log('Entered',this.blogs);
+    this.blogs.find( item => { console.log(item) })
   }
 
 }

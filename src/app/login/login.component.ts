@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,16 @@ export class LoginComponent implements OnInit {
   disableBtn: boolean = false;
   generalError: string | boolean = false;
   loginForm: FormGroup;
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(
+    private loginService: LoginService, 
+    private router: Router,
+    private loading: LoadingService
+  ) {
+    this.loading.toggleLoading(false);
+   }
 
   ngOnInit() {
+    
     this.loginService.auth.subscribe( r => {
       if( r ){
         console.log('logged in');

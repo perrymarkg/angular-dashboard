@@ -1,5 +1,6 @@
 <div class="card-columns">
-    <ng-container *ngFor="let page of pages | async; let i = index">
+    <ng-container *ngIf="pages">
+    <ng-container *ngFor="let page of pages; let i = index">
     <div class="card" [ngClass]="{'p-3': i % 2}" *ngIf="page.active !== 'false' ">
         <a [routerLink]="['/blog', page.url_slug]" 
             class="card-img-top"
@@ -13,5 +14,6 @@
             <div [innerHtml]="page.excerpt + '...'"></div>
         </div>
     </div>
+    </ng-container>
     </ng-container>
 </div>

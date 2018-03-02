@@ -21,12 +21,13 @@ export class BlogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.db.initBlogs();
-    this.db.blogsEmitter.subscribe( blogs => {
-      this.blogs = blogs;
-      this.loading.toggleBlocker(false);
+    if( Object.keys(this.db.data.blogs).length )
+      this.blogs = this.db.data.blogs;
+     
+    this.db.dataEmitter.subscribe( results => {
+      this.blogs = results.blogs;
+      this.loading.toggleBlocker(false);      
     })
-    
   }
 
   callTest(){
