@@ -4,6 +4,7 @@ import { AngularFireList } from 'angularfire2/database';
 import { LoginService } from '../../services/login.service';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../services/loading.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,11 +19,12 @@ export class HeaderComponent implements OnInit {
     private db: DbService, 
     private login: LoginService,
     private title: Title,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    if( this.db.data.settings.length )
+    if( Object.keys(this.db.data.settings).length )
       this.settings = this.db.data.settings;
 
     this.db.dataEmitter.subscribe( result => {
@@ -43,7 +45,8 @@ export class HeaderComponent implements OnInit {
 
   viewFrontend(event){
     event.preventDefault()
-    window.open("/", "_blank");
+    this.router.navigate(['/'])
+    //window.open("/", "_blank");
   }
 
 }
