@@ -66,7 +66,7 @@ export class BlogComponent implements OnInit {
 
   findBlogItem(itemSlug: string){
     return this.blogList.find( item => { 
-      return item.url_slug === itemSlug
+      return item.url_slug === itemSlug && item.active
     })
   }
 

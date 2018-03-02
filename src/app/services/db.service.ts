@@ -58,7 +58,7 @@ export class DbService {
     }
 
     getAllBlogs(){
-        return this.af.list('pages').snapshotChanges().map( items => {
+        return this.af.list('pages', ref => ref.orderByChild('created') ).snapshotChanges().map( items => {
             return items.map(item => ({ key: item.key, ...item.payload.val() }));
         })
     }
