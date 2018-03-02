@@ -34,23 +34,18 @@ export class NewBlogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
        
     this.pageId = this.route.snapshot.params['id'];
 
-    if( this.pageId ){    
-      this.db.getBlogById(this.pageId).subscribe( result => {
-        if( result ){
-          this.page = result;
-          this.options.pageTitle = 'Edit Blog';
-          this.options.editMode = true;
-          this.options.show = true;
-          this.options.btnTitle = 'Update'
+    if( this.pageId ){
+      if( Object.keys(this.db.data.blogs).length ){
+        this.setEditMode()
+      }
+      
+      this.db.dataEmitter.subscribe( results => {
+        if( Object.keys(results.blogs).length ){
+          this.setEditMode()        
         }
-        else {
-          this.router.navigate(['../../'], {relativeTo:this.route})
-        }
-        this.loading.toggleBlocker(false);
       })
     }
     else {
@@ -116,8 +111,19 @@ export class NewBlogComponent implements OnInit {
   }
 
   findPageItem(itemKey: string){
-    console.log('Entered',this.blogs);
-    this.blogs.find( item => { console.log(item) })
+    return this.blogs.find( item => { 
+      return item.key === itemKey
+    })
+  }
+
+  setEditMode(){
+    this.blogs = this.db.data.blogs;
+    this.findPageItem(this.pageId)
+    this.page = this.findPageItem(this.pageId)
+    this.options.pageTitle = 'Edit Blog';
+    this.options.editMode = true;
+    this.options.show = true;
+    this.options.btnTitle = 'Update'
   }
 
 }
