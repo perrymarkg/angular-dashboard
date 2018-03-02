@@ -118,8 +118,10 @@ export class NewBlogComponent implements OnInit {
 
   setEditMode(){
     this.blogs = this.db.data.blogs;
-    this.findPageItem(this.pageId)
     this.page = this.findPageItem(this.pageId)
+    if( !this.page )
+      return this.router.navigate(['../../'], {relativeTo: this.route})
+    
     this.options.pageTitle = 'Edit Blog';
     this.options.editMode = true;
     this.options.show = true;
