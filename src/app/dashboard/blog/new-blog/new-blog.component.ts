@@ -57,7 +57,7 @@ export class NewBlogComponent implements OnInit {
   }
 
   onSubmit( form: NgForm ){
-
+    
     if( !form.valid ){
       // send errors  
     }
@@ -75,6 +75,8 @@ export class NewBlogComponent implements OnInit {
       this.router.navigate(['../'], {relativeTo: this.route} )
     else
       this.router.navigate(['../../'], {relativeTo: this.route} )
+
+    
   }
 
   addPage(form: NgForm){
@@ -108,6 +110,7 @@ export class NewBlogComponent implements OnInit {
 
   deletePage(event){
     this.options.submitDisabled = true;
+    this.notice.setNotice('Page deleted successfully!')
     event.preventDefault();
     this.db.deletePage(this.pageId).catch( error => {
       if( !error )

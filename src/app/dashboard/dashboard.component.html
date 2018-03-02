@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="page">
-      <div *ngIf="noticeMessage" class="notice-message alert alert-success">
+      <div *ngIf="noticeMessage" class="notice-message alert alert-success" [@fadeInOut]>
         <strong>{{ noticeMessage.msg }}</strong>
         <button type="button" class="close" (click)="onNoticeClose($event)" >
           <span aria-hidden="true">&times;</span>
