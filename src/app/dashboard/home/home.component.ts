@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fadeInOutCustom } from '../../animations/animations';
+import { PaginationService } from '../../services/pagination.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,11 @@ import { fadeInOutCustom } from '../../animations/animations';
 })
 export class HomeComponent implements OnInit {
 
+  
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

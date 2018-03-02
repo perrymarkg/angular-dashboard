@@ -35,6 +35,7 @@ import { IndexComponent } from './frontend/index/index.component';
 import { BlogComponent as BlogFrontendComponent } from './frontend/blog/blog.component';
 // General
 import { LoadingComponent } from './ui/loading/loading.component';
+import { PaginationService } from './services/pagination.service';
 
 
 
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
     { path: '', component:HomeComponent },
     { path: 'blog', component:BlogComponent },
+    { path: 'blog/:page', component:BlogComponent },
     { path: 'blog/new', component: NewBlogComponent },
     { path: 'blog/edit/:id', component: NewBlogComponent },
     { path: 'settings', component: SettingsComponent }
@@ -88,7 +90,8 @@ const appRoutes: Routes = [
     AuthGuard, 
     DbService,
     LoadingService,
-    NoticeService
+    NoticeService,
+    PaginationService
   ],
   bootstrap: [AppComponent]
 })

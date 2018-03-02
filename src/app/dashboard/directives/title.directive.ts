@@ -23,7 +23,12 @@ export class TitleDirective implements OnInit, OnChanges{
     }
     
     getCurrentUrl(){
-        return this.capitalize( this.router.url.split('/').pop() );
+        let title = this.capitalize( this.router.url.split('/').pop() );
+        if( title.indexOf('?') > 1 )
+            title = title.substring(0, title.indexOf('?'))
+
+        return title;
+        
     }
 
     capitalize(title: string){
