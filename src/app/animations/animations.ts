@@ -28,6 +28,14 @@ export const flyInFromLeft = trigger('flyInFromLeft', [
     ])    
 ])
 
+export const flyInFromRight = trigger('flyInFromRight', [
+  state('in', style({transform: 'translateX(-100%)'})),
+  transition('void => *', [
+    style({transform: 'translateX(100%)'}),
+    animate('200ms')
+  ])    
+])
+
 export const flyInFromTop = trigger('flyInFromTop', [
   state('in', style({transform: 'translateY(0)'})),
   transition('void => *', [

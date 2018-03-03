@@ -5,14 +5,14 @@ import { PageModel } from '../../models/page.model';
 import { Title } from '@angular/platform-browser';
 import { SettingsModel } from '../../models/settings.model';
 import { Observable } from 'rxjs/Observable';
-import { fadeInOut, fadeInOutCustom } from '../../animations/animations';
+import { fadeInOut, fadeInOutCustom, flyInFromRight } from '../../animations/animations';
 import { PaginationService } from '../../services/pagination.service';
 
 @Component({
   selector: 'app-blog-index',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
-  animations:[fadeInOut, fadeInOutCustom('500ms', '0ms')]
+  animations:[fadeInOut, fadeInOutCustom('500ms', '0ms'), flyInFromRight]
 })
 export class BlogComponent implements OnInit {
 

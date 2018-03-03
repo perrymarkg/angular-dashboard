@@ -3,14 +3,14 @@ import { DbService } from '../services/db.service';
 import { SettingsModel } from '../models/settings.model';
 import { Observable } from '@firebase/util';
 import { LoadingService } from '../services/loading.service';
-import { flyInFromTop, grow, fadeInOut } from '../animations/animations';
+import { grow, fadeInOut } from '../animations/animations';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-frontend',
   templateUrl: './frontend.component.html',
   styleUrls: ['./frontend.component.css'],
-  animations:[flyInFromTop, grow, fadeInOut]
+  animations:[grow, fadeInOut]
 })
 export class FrontendComponent implements OnInit {
   
