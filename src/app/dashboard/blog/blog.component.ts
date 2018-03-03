@@ -54,7 +54,9 @@ export class BlogComponent implements OnInit {
   }
 
   setPagination(items, selectedPage){
+    
     this.pager = this.pagination.paginate(items, selectedPage);
+    console.log(items.length)
     if( selectedPage > this.pager.totalPages.length ){
       this.selectedPage = 1;
       this.pager = this.pagination.paginate(items, 1);

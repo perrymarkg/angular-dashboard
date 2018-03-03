@@ -15,7 +15,7 @@ export class PaginationService {
   paginate(items, currentPage = 1, perPage = 5){
     
     if( items.length ){
-      const total = Math.round(items.length / perPage)
+      const total = Math.ceil(items.length / perPage)
       this.data.currentPage = currentPage;
       this.data.totalPages = Array(total).fill(0).map((x,i)=>i) ;
       this.data.rangeStart = ( (this.data.currentPage * perPage ) - perPage);
