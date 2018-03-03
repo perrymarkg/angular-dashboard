@@ -23,3 +23,35 @@ hr {
     top:20px;
     right:20px;
 }
+.breadcrumb {
+    margin:0;
+    background:none;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+}
+
+.search-box {
+    position:relative;
+}
+.search-results {
+    position: absolute;
+    top:100%;
+    left:0;
+    background:#ffffff;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    z-index: 50;
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+.search-results {
+    padding:0;
+    list-style-type: none;
+    margin:0;
+}
+.search-results li {
+    padding:1em;
+    border-bottom: 1px solid #dedede;
+}
+.search-results li:last-child {
+    border-bottom: none;
+}

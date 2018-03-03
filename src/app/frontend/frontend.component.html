@@ -14,7 +14,46 @@
                 </h4>
                 </div>
             </div>
-    
+            <hr>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <nav>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a [routerLink]="['/']">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a [routerLink]="['/']">Blogs</a>
+                            </li>
+                            <li class="breadcrumb-item active" *ngIf="crumb">{{crumb}}</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Search"
+                            (keyup)="toggleSearch($event)"
+                            (blur)="hideSearch()"
+                            (click)="$event.target.select()"
+                            />
+                        <ul *ngIf="searchResults" class="search-results" [@fadeInOut]>
+                            <ng-container *ngIf="searchResults.length">
+                            <li *ngFor="let item of searchResults">
+                                <a [routerLink]="['/blog/'+item.url_slug]" >{{item.title}}</a>
+                            </li>
+                            </ng-container>
+                            <ng-container *ngIf="!searchResults.length">
+                            <li>No Results Found!</li>
+                            </ng-container>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
             <hr>
     
             <div class="content">

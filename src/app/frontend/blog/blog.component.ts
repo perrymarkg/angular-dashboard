@@ -33,6 +33,7 @@ export class BlogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     if( Object.keys(this.db.data.settings).length )
       this.settings = this.db.data.settings
       
@@ -55,8 +56,12 @@ export class BlogComponent implements OnInit {
       if( this.slug && this.blogList ){
         this.blog = false;
         this.blog = this.findBlogItem(this.slug)
+        if(this.blog)
+          this.title.setTitle(this.blog.title);
         if( !this.blog )
           this.router.navigate(['../../'], {relativeTo: this.route})
+    
+          
       }
 
     })
@@ -72,7 +77,7 @@ export class BlogComponent implements OnInit {
   }
 
   findBlogItem(itemSlug: string){
-    return this.blogList.find( item => { 
+    return this.db.data.activeBlogs.find( item => { 
       return item.url_slug === itemSlug && item.active
     })
   }
