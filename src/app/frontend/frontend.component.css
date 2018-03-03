@@ -1,5 +1,19 @@
+a:hover {
+    text-decoration: none;
+}
 .header {
     text-align: center;
+}
+.header .logo > a {
+    display: inline;
+    vertical-align: middle;
+}
+.header .logo a img {
+    max-width: 100px;
+}
+.header .logo h4 {
+    display: inline;
+    vertical-align: middle;
 }
 hr {
     margin:20px 0;

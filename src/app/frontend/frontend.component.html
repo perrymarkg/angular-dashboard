@@ -5,10 +5,14 @@
         <div class="col-md-12">
     
             <div class="header" *ngIf="settings" [@grow]>
+                <div class="logo clearfix">
                 <a [routerLink]="['/']" *ngIf="settings.generalSettings">
                     <img [src]="settings.generalSettings.blogLogo" />
                 </a>
-                <h4 *ngIf="settings.showBlogName">{{settings.generalSettings.blogName}}</h4>
+                <h4 *ngIf="settings.showBlogName">
+                    <a [routerLink]="['/']">{{settings.generalSettings.blogName}}</a>
+                </h4>
+                </div>
             </div>
     
             <hr>

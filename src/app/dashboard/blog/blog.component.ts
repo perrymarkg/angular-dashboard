@@ -13,7 +13,7 @@ import { NoticeService } from '../../services/notice.service';
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
-  animations:[fadeInOutCustom()]
+  animations:[fadeInOutCustom('500ms', '0s')]
 })
 export class BlogComponent implements OnInit {
 
@@ -42,22 +42,25 @@ export class BlogComponent implements OnInit {
      
     this.db.dataEmitter.map( result => {
       this.route.queryParams.subscribe( param => {
-        if(param['page'])
-        this.selectedPage = param['page'];
-        this.setPagination(result.blogs, this.selectedPage)
+        if(param['page']){
+          this.selectedPage = param['page'];
+          this.setPagination(this.db.data.blogs, this.selectedPage)
+        }
+        
       })
       return result
     }).subscribe( results => {
-      this.setPagination(this.db.data.blogs, this.selectedPage)
-      this.loading.toggleBlocker(false);
+      if( Object.keys(results.blogs).length ){
+        this.setPagination(this.db.data.blogs, this.selectedPage)
+        this.loading.toggleBlocker(false);
+      }
     })
   }
 
   setPagination(items, selectedPage){
     
     this.pager = this.pagination.paginate(items, selectedPage);
-    console.log(items.length)
-    if( selectedPage > this.pager.totalPages.length ){
+    if( this.pager && selectedPage > this.pager.totalPages.length ){
       this.selectedPage = 1;
       this.pager = this.pagination.paginate(items, 1);
     }

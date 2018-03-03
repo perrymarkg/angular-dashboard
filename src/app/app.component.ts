@@ -16,7 +16,6 @@ export class AppComponent {
     private loading: LoadingService,
     private db: DbService
   ){
-    this.db.initBlogs();
     this.db.initSettings();
     this.loading.toggleLoadingEmitter.subscribe( val => this.showLoading = val)
   }

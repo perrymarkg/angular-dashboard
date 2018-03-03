@@ -15,20 +15,30 @@
   </div>
 </ng-container>
   <div class="col-md-3 sidebar" *ngIf="settings && settings.useSidebar">
-    <div class="card">
+    <div class="card text-white bg-dark">
       <div class="card-body">
         <h3>Blogs</h3>
-        
-        <!-- Temporary, fix to work with async -->
-        <ul *ngIf="blogList">
-          <ng-container *ngFor="let blogItem of blogList">
-          <li [ngClass]="{'active': blogItem.url_slug === slug}">
-            <a [routerLink]="['/blog', blogItem.url_slug]">{{ blogItem.title }}</a>
-          </li>
-          </ng-container>
-        </ul>
-
+      </div>  
+      <ul *ngIf="blogList" class="blog-list">
+        <ng-container *ngFor="let blogItem of blogList">
+        <li [ngClass]="{'active': blogItem.url_slug === slug}">
+          <a [routerLink]="['/blog', blogItem.url_slug]" class="text-white">{{ blogItem.title }}</a>
+        </li>
+        </ng-container>
+      </ul>
+      <div class="card-body">
+        <nav *ngIf="pager">
+          <ul class="pagination justify-content-center">
+            <li class="page-item text-dark" 
+            *ngFor="let p of pager.totalPages; let i = index" 
+            [ngClass]="{'active': (i + 1) == selectedPage }" 
+            [@fadeInOutCustom]>
+              <a class="page-link" (click)="paginate(i+1)" >{{i + 1}}</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
+    
   </div>
 </div>

@@ -13,13 +13,14 @@ export class DbService {
     data = {
         blogs: [],
         settings: [],
-        selectedBlog: []
+        selectedBlog: [],
+        activeBlogs: []
     }
 
     dataEmitter: EventEmitter<any> = new EventEmitter();
-    settingsEmitter: EventEmitter<any> = new EventEmitter();
+    /* settingsEmitter: EventEmitter<any> = new EventEmitter();
     blogsEmitter: EventEmitter<any> = new EventEmitter();
-    blogItemFrontendEmitter: EventEmitter<any> = new EventEmitter();
+    blogItemFrontendEmitter: EventEmitter<any> = new EventEmitter(); */
 
     constructor(private af: AngularFireDatabase){}
 
@@ -27,7 +28,7 @@ export class DbService {
         this.getAllBlogs().subscribe( results => {
             this.data.blogs = results;
             this.dataEmitter.emit(this.data);
-            this.blogsEmitter.emit(results);
+            // this.blogsEmitter.emit(results);
         })
     }
     
@@ -35,7 +36,14 @@ export class DbService {
         this.getSettings().subscribe( results => {
             this.data.settings = results;
             this.dataEmitter.emit(this.data);
-            this.settingsEmitter.emit(results);
+            //this.settingsEmitter.emit(results);
+        })
+    }
+
+    initActiveBlogs(){
+        this.getAllActiveBlogs().subscribe( results => {
+            this.data.activeBlogs = results;
+            this.dataEmitter.emit(this.data);
         })
     }
 
@@ -58,7 +66,13 @@ export class DbService {
     }
 
     getAllBlogs(){
-        return this.af.list('pages', ref => ref.orderByChild('created') ).snapshotChanges().map( items => {
+        return this.af.list('pages' ).snapshotChanges().map( items => {
+            return items.map(item => ({ key: item.key, ...item.payload.val() }));
+        })
+    }
+
+    getAllActiveBlogs(){
+        return this.af.list('pages', ref => ref.orderByChild('active').equalTo(true) ).snapshotChanges().map( items => {
             return items.map(item => ({ key: item.key, ...item.payload.val() }));
         })
     }
@@ -118,12 +132,6 @@ export class DbService {
                 })
             }
             return [settings];
-        })
-    }
-
-    setSelectedBlogFrontend(slug: string){
-        this.getBlogByUrlSlug(slug).subscribe( result => {
-            this.blogItemFrontendEmitter.emit(result)
         })
     }
 

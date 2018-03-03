@@ -1,3 +1,21 @@
-.card-img-top img {
+h5 {
+    margin-bottom:0;
+}
+a:hover {
+    text-decoration: none;
+}
+.card {
+    margin-bottom:20px;
+}
+.card:hover {
+    box-shadow: 1px 1px 7px rgba(0,0,0,0.5)
+}
+.featured-image {
+    height:150px;
+    overflow: hidden;
+    background:#dedede;
+}
+.featured-image img {
     width: 100%;
+    min-height: 100%;
 }

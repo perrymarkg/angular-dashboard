@@ -20,6 +20,7 @@ export class FrontendComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.db.initActiveBlogs();
     if( Object.keys(this.db.data.settings).length ){
       this.settings = this.db.data.settings;      
       this.loading.toggleLoading(false);
