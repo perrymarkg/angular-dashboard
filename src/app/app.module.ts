@@ -48,8 +48,8 @@ const appRoutes: Routes = [
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
     { path: '', component:HomeComponent },
     { path: 'blog', component:BlogComponent },
-    { path: 'blog/:page', component:BlogComponent },
     { path: 'blog/new', component: NewBlogComponent },
+    { path: 'blog/:page', component:BlogComponent },
     { path: 'blog/edit/:id', component: NewBlogComponent },
     { path: 'settings', component: SettingsComponent }
   ]},
