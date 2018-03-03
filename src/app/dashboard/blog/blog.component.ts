@@ -41,11 +41,13 @@ export class BlogComponent implements OnInit {
     }
      
     this.db.dataEmitter.map( result => {
-      this.route.queryParams.subscribe( param => {
-        if(param['page']){
-          this.selectedPage = param['page'];
-          this.setPagination(this.db.data.blogs, this.selectedPage)
-        }
+      
+      if( Object.keys(this.db.data.blogs).length )
+        this.route.queryParams.subscribe( param => {
+          if(param['page']){
+            this.selectedPage = param['page'];
+            this.setPagination(this.db.data.blogs, this.selectedPage)
+          }
         
       })
       return result
