@@ -5,7 +5,7 @@ export class PageModel {
     excerpt = '';
     created = 0;
     updated = 0;
-    active = true;
+    active = 'true';
     type: 'page' | 'blog' = 'blog';
     url_slug = '';
     categories: Array<string> | boolean = false;

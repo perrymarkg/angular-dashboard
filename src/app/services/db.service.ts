@@ -67,7 +67,7 @@ export class DbService {
     }
 
     getAllActiveBlogs() {
-        return this.af.list('pages', ref => ref.orderByChild('active').equalTo(true) ).snapshotChanges().map( items => {
+        return this.af.list('pages', ref => ref.orderByChild('active').equalTo('true') ).snapshotChanges().map( items => {
             return items.map(item => ({ key: item.key, ...item.payload.val() }));
         });
     }

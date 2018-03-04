@@ -1,28 +1,35 @@
 <div class="row">
-    <ng-container *ngIf="loadedBlogs">
+  <ng-container *ngIf="loadedBlogs">
     <ng-container *ngFor="let blog of loadedBlogs; let i = index">
-    <div class="col-md-4" *ngIf="blog.active !== 'false' " [@fadeInOut] >
+      <div class="col-md-4" *ngIf="blog.active !== 'false' " [@fadeInOut] >
+
         <div class="card" >
-                <div class="card-body">
-                    <em>{{ blog.created | date: 'MMM dd yyyy'}}</em>
-                    <h5><a [routerLink]="['/blog', blog.url_slug]">{{ blog.title }}</a></h5>
-                </div>
-                <div class="featured-image">
-                    <a [routerLink]="['/blog', blog.url_slug]" *ngIf="blog.featured_image">
-                        <img [src]="blog.featured_image"  />
-                    </a>
-                </div>
-                <div class="card-body">
-                    <div [innerHtml]="blog.excerpt + '...'" class="excerpt"></div>
-                </div>
+
+          <div class="card-body">
+            <em>{{ blog.created | date: 'MMM dd yyyy'}}</em>
+            <h5><a [routerLink]="['/blog', blog.url_slug]">{{ blog.title }}</a></h5>
+          </div>
+
+          <a class="featured-image" 
+            [routerLink]="['/blog', blog.url_slug]" 
+            [style.background-color]="backgrounds[i]">
+            <img [src]="blog.featured_image" *ngIf="blog.featured_image" />
+          </a>
+
+          <div class="card-body">
+            <div [innerHtml]="blog.excerpt + '...'" class="excerpt"></div>
+          </div>
+
         </div>
-    </div>
+
+      </div>
     </ng-container>
-    </ng-container>
+  </ng-container>
+
+  <a *ngIf="pager && (pager.totalPages.length - selectedPage !== 0)" 
+    class="btn btn-success btn-lg btn-block text-white" 
+    (click)="loadMore()">
+        Load More ...
+  </a>
   
-    <a *ngIf="pager && (pager.totalPages.length - selectedPage !== 0)" 
-        class="btn btn-success btn-lg btn-block text-white" 
-        (click)="loadMore()">
-            Load More ...
-    </a>
 </div>

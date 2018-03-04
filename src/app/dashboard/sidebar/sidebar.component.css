@@ -1,23 +1,23 @@
 ul {
-    list-style-type: none;
-    padding-left:0;
+  list-style-type: none;
+  padding-left:0;
 }
 ul li {
-    border-top:1px solid #222;
-    border-bottom:1px solid #666;
+  border-top:1px solid #222;
+  border-bottom:1px solid #666;
 }
 ul li a {
-    display:block;
-    padding:10px;
-    color:#ffffff;
+  display:block;
+  padding:10px;
+  color:#ffffff;
 }
 ul li.active {
-    border-color: #007bff;
-    background:#007bff;
+  border-color: #007bff;
+  background:#007bff;
 }
 ul li.active a {
-    color:#ffffff;
+  color:#ffffff;
 }
 ul li a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }

@@ -1,7 +1,9 @@
 
 <div class="row">
+
   <ng-container *ngIf=" blog && settings">
-  <div [ngClass]="{'col-md-9': settings.useSidebar, 'col-md-12': !settings.useSidebar}" >
+    <div [ngClass]="{'col-md-9': settings.useSidebar, 'col-md-12': !settings.useSidebar}" >
+
       <div class="card" *ngIf="blog" [@fadeInOut]>
         <div class="card-body">
           <div class="header">
@@ -12,13 +14,18 @@
           <div [innerHtml]="blog.content"></div>
         </div>
       </div>
-  </div>
-</ng-container>
+      
+    </div>
+  </ng-container>
+
   <div class="col-md-3 sidebar" *ngIf="settings && settings.useSidebar" [@flyInFromRight]>
+    
     <div class="card text-white bg-dark">
+      
       <div class="card-body">
         <h3>Blogs</h3>
-      </div>  
+      </div>
+
       <ul *ngIf="blogList" class="blog-list">
         <ng-container *ngFor="let blogItem of blogList">
         <li [ngClass]="{'active': blogItem.url_slug === slug}">
@@ -26,7 +33,9 @@
         </li>
         </ng-container>
       </ul>
+
       <div class="card-body">
+
         <nav *ngIf="pager">
           <ul class="pagination justify-content-center">
             <li class="page-item text-dark" 
@@ -37,7 +46,9 @@
             </li>
           </ul>
         </nav>
+        
       </div>
+
     </div>
     
   </div>

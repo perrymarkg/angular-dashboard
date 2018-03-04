@@ -18,6 +18,7 @@ export class IndexComponent implements OnInit {
   selectedPage = 1;
   perPage = 6;
   pager;
+  backgrounds = [];
 
   constructor (
     private db: DbService,
@@ -26,6 +27,9 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    // console.log(this.generateRandomColor());
+
     if ( Object.keys(this.db.data.activeBlogs).length ) {
       this.blogs = this.db.data.activeBlogs;
       this.setPagination();
@@ -48,6 +52,7 @@ export class IndexComponent implements OnInit {
     if ( !this.loadedBlogs ) {
       this.loadedBlogs = blogs.slice(this.pager.rangeStart, this.pager.rangeEnd + 1);
     }
+    this.generateRandomColor();
   }
 
   loadMore() {
@@ -57,6 +62,17 @@ export class IndexComponent implements OnInit {
     this.loadedBlogs = this.loadedBlogs.concat(
       blogs.slice(this.pager.rangeStart, this.pager.rangeEnd + 1)
     );
+  }
+
+  generateRandomColor() {
+    const colors = ['#2ecc71', '#2980b9', '#8e44ad', '#f39c12', '#2980b9', '#282830', '#FACA9B', '#83D6DE', '#BB3658'];
+
+    for ( let x = 0; x < this.blogs.length; x++ ) {
+      const rand = Math.floor( Math.random() * colors.length - 1) + 1;
+      console.log(rand);
+      this.backgrounds.push( colors[ rand ] );
+    }
+
   }
 
 }

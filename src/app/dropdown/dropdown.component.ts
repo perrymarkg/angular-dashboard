@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
 })
 export class DropdownComponent {
 
-    show = false;
+  show = false;
 
-    btnTrigger() {
-        this.show = !this.show;
-    }
+  btnTrigger() {
+    this.show = !this.show;
+  }
 
 }

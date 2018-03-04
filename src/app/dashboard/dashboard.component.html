@@ -1,15 +1,19 @@
 <div class="wrapper">
   <div class="page">
-      <div *ngIf="noticeMessage" class="notice-message alert alert-{{noticeMessage.type}}" [@fadeInOut]>
-        <strong>{{ noticeMessage.msg }}</strong>
-        <button type="button" class="close" (click)="onNoticeClose($event)" >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+
+    <div *ngIf="noticeMessage" class="notice-message alert alert-{{noticeMessage.type}}" [@fadeInOut]>
+      <strong>{{ noticeMessage.msg }}</strong>
+      <button type="button" class="close" (click)="onNoticeClose($event)" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
     <app-header></app-header>
+
     <div class="sidebar" [@flyInFromLeft]>
       <app-sidebar></app-sidebar>
     </div>
+
     <div class="content">      
       <div class="content-wrapper">
         <div class="container-fluid">
@@ -17,5 +21,6 @@
         </div>
       </div>
     </div>
+    
   </div>
 </div>
