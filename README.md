@@ -1,27 +1,47 @@
 # AngularDashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
+This is a sample blog app built while learning angular 4 with integration to Google Firebase and Authentication. 
 
-## Development server
+1. `git clone .`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+2. `npm install`
 
-## Code scaffolding
+3. create a google firebase account `https://firebase.google.com/`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+4. go to `https://console.firebase.google.com/u/0/` and create project
 
-## Build
+5. On the project overview page click `Add Firebase To Your Web APP`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+6. copy all the keys inside `var config`
 
-## Running unit tests
+```javascript
+var config = {
+    apiKey: "...",
+    authDomain: "...",
+    databaseURL: "...",
+    projectId: "...",
+    storageBucket: "...",
+    messagingSenderId: "..."
+  };
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+7. On your local project files copy `src/app/env/env-tpl.ts` to `src/app/env/env.ts` and add your keys
 
-## Running end-to-end tests
+9. Back to Google Firebase, go to `Authentication` > `Users` then add a new user. Take note of this user as this will be used as the login for the app.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+10. `Authentication` > `Sign-In Method` and enable `Email/Password`
 
-## Further help
+11. Go to `Database` > `Rules` tab and paste the configuration below
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```javascript
+{
+  "rules": {
+    ".read": "true",
+    ".write": "auth != null",
+    "pages": {
+    	".indexOn": "active"  
+    }    
+  }
+}
+```
+12. Run `ng serve --open`
