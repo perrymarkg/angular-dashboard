@@ -25,7 +25,23 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.settingsForm = new FormGroup({
+    this.settingsForm = this.createForm();
+
+    this.assignFormValues();
+
+    this.db.dataEmitter.subscribe( results => {
+      this.assignFormValues();
+    });
+
+  }
+
+  onSubmit() {
+    this.notice.setNotice('Settings updated successfully!');
+    this.db.updateSettings(this.settingsForm.value);
+  }
+
+  createForm() {
+    return new FormGroup({
       generalSettings: new FormGroup({
         blogName: new FormControl('', Validators.required ),
         blogTitle: new FormControl(),
@@ -34,24 +50,13 @@ export class SettingsComponent implements OnInit {
       showBlogName: new FormControl(),
       useSidebar: new FormControl()
     });
+  }
 
+  assignFormValues() {
     if ( Object.keys(this.db.data.settings).length ) {
       this.settingsForm.setValue( this.db.data.settings );
       this.options.show = true;
     }
-
-    this.db.dataEmitter.subscribe( results => {
-      if ( Object.keys(this.db.data.settings).length ) {
-        this.settingsForm.setValue(this.db.data.settings);
-        this.options.show = true;
-      }
-    });
-
-  }
-
-  onSubmit() {
-    this.notice.setNotice('Settings updated successfully!');
-    this.db.updateSettings(this.settingsForm.value);
   }
 
 }

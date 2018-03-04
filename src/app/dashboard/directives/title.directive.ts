@@ -16,26 +16,26 @@ export class TitleDirective implements OnInit, OnChanges {
     ) {}
 
     ngOnInit() {
-        if ( !this.title ) {
-            this.render.setProperty( this.el.nativeElement, 'innerHTML', this.getCurrentUrl() );
-        }
+      if ( !this.title ) {
+        this.render.setProperty( this.el.nativeElement, 'innerHTML', this.getCurrentUrl() );
+      }
     }
 
     ngOnChanges() {
-        this.render.setProperty( this.el.nativeElement, 'innerHTML', this.title );
+      this.render.setProperty( this.el.nativeElement, 'innerHTML', this.title );
     }
 
     getCurrentUrl() {
-        let title = this.capitalize( this.router.url.split('/').pop() );
-        if ( title.indexOf('?') > 1 ) {
-            title = title.substring(0, title.indexOf('?'));
-        }
+      let title = this.capitalize( this.router.url.split('/').pop() );
+      if ( title.indexOf('?') > 1 ) {
+          title = title.substring(0, title.indexOf('?'));
+      }
 
-        return title;
+      return title;
     }
 
     capitalize(title: string) {
-        return title.charAt(0).toUpperCase() + title.slice(1);
+      return title.charAt(0).toUpperCase() + title.slice(1);
     }
 
 }

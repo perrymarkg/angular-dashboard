@@ -27,17 +27,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
-    if ( Object.keys(this.db.data.settings).length ) {
-      this.settings = this.db.data.settings;
-    }
+    this.assignSettingsValue();
 
     this.db.dataEmitter.subscribe( result => {
-
-      if ( Object.keys(result.settings).length ) {
-        this.settings = result.settings;
-        this.loading.toggleLoading(false);
-      }
-
+      this.assignSettingsValue();
     });
 
   }
@@ -50,6 +43,13 @@ export class HeaderComponent implements OnInit {
   viewFrontend(event) {
     event.preventDefault();
     this.router.navigate(['/']);
+  }
+
+  assignSettingsValue() {
+    if ( Object.keys(this.db.data.settings).length ) {
+      this.settings = this.db.data.settings;
+      this.loading.toggleLoading(false);
+    }
   }
 
 }

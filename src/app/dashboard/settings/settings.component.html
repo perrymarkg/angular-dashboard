@@ -8,6 +8,7 @@
       
       <div class="card-body">
         <form class="form" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+          
           <div class="group-wrapper" formGroupName="generalSettings">
             <h4>General</h4>
             <div class="form-group">
@@ -27,17 +28,19 @@
               <input type="text" class="form-control" formControlName="blogLogo" />
             </div>
           </div>
+
           <h4>Front End</h4>
           <div class="form-group">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="showBlog" formControlName="showBlogName">
-                <label class="custom-control-label" for="showBlog">Show blog title on header</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="useSidebar" formControlName="useSidebar">
-                <label class="custom-control-label" for="useSidebar">Use Sidebar</label>
-              </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="showBlog" formControlName="showBlogName">
+              <label class="custom-control-label" for="showBlog">Show blog title on header</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="useSidebar" formControlName="useSidebar">
+              <label class="custom-control-label" for="useSidebar">Use Sidebar</label>
+            </div>
           </div>
+
           <button class="btn btn-primary" [disabled]="settingsForm.invalid">Save</button>
         </form>
       </div>

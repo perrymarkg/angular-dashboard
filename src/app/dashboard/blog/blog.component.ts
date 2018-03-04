@@ -31,19 +31,12 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
 
-    if ( Object.keys(this.db.data.blogs).length ) {
-      this.setPagination(this.db.data.blogs, this.route.snapshot.queryParams['page']);
-    }
+    this.triggerPagination();
 
     this.queryParamsSubscribe();
 
     this.db.dataEmitter.subscribe( results => {
-
-      if ( Object.keys(results.blogs).length ) {
-        this.setPagination(this.db.data.blogs, this.selectedPage);
-        this.loading.toggleBlocker(false);
-      }
-
+      this.triggerPagination();
     });
 
   }
@@ -58,6 +51,13 @@ export class BlogComponent implements OnInit {
     }
 
     this.blogs = items.slice(this.pager.rangeStart, this.pager.rangeEnd + 1);
+  }
+
+  triggerPagination() {
+    if ( Object.keys(this.db.data.blogs).length ) {
+      this.setPagination(this.db.data.blogs, this.selectedPage);
+      this.loading.toggleBlocker(false);
+    }
   }
 
   queryParamsSubscribe() {
