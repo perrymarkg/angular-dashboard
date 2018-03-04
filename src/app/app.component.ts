@@ -11,12 +11,13 @@ import { fadeInOut } from './animations/animations';
 })
 export class AppComponent {
   title = 'app';
-  showLoading: boolean = true;
+  showLoading = true;
+
   constructor(
     private loading: LoadingService,
     private db: DbService
-  ){
+  ) {
     this.db.initSettings();
-    this.loading.toggleLoadingEmitter.subscribe( val => this.showLoading = val)
+    this.loading.toggleLoadingEmitter.subscribe( val => this.showLoading = val);
   }
 }

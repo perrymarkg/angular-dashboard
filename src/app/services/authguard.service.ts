@@ -7,10 +7,10 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
-  
+
 @Injectable()
 export class AuthGuard implements CanActivate {
-    
+
     private loggedIn = new Observable();
     constructor(private loginService: LoginService, private router: Router) {}
 
@@ -20,18 +20,16 @@ export class AuthGuard implements CanActivate {
     ): Observable<boolean> | Promise<boolean> | boolean {
         return new Observable( observer => {
             this.loginService.auth.subscribe( (result) => {
-                if( result ){
+                if ( result ) {
                     observer.next(true);
                     observer.complete();
-                }
-                else {
+                } else {
                     observer.next(false);
                     observer.complete();
                     this.router.navigate(['/login']);
                 }
-            })
-            
-        })
+            });
+
+        });
     }
-    
 }

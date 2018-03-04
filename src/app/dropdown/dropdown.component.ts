@@ -9,8 +9,8 @@ export class DropdownComponent {
 
     show = false;
 
-    btnTrigger(){
+    btnTrigger() {
         this.show = !this.show;
     }
 
-} 
+}

@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit {
 
   settings;
 
-  constructor( 
-    private db: DbService, 
+  constructor(
+    private db: DbService,
     private login: LoginService,
     private title: Title,
     private loading: LoadingService,
@@ -26,29 +26,30 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if( Object.keys(this.db.data.settings).length )
+
+    if ( Object.keys(this.db.data.settings).length ) {
       this.settings = this.db.data.settings;
+    }
 
     this.db.dataEmitter.subscribe( result => {
-     
-      if( Object.keys(result.settings).length ){
-        this.settings = result.settings
+
+      if ( Object.keys(result.settings).length ) {
+        this.settings = result.settings;
         this.loading.toggleLoading(false);
       }
-    })
-    
-    
+
+    });
+
   }
 
-  onLogOut(event){
+  onLogOut(event) {
     event.preventDefault();
     this.login.logOut();
   }
 
-  viewFrontend(event){
-    event.preventDefault()
-    this.router.navigate(['/'])
-    //window.open("/", "_blank");
+  viewFrontend(event) {
+    event.preventDefault();
+    this.router.navigate(['/']);
   }
 
 }

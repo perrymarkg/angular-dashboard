@@ -1,13 +1,13 @@
 export class PageModel {
-    parent: string  = '';
-    title: string = '';
-    content: string = '';
-    excerpt: string = '';
-    created: number = 0;
-    updated: number = 0;
-    active: boolean = true;
+    parent  = '';
+    title = '';
+    content = '';
+    excerpt = '';
+    created = 0;
+    updated = 0;
+    active = true;
     type: 'page' | 'blog' = 'blog';
-    url_slug: string = ''
+    url_slug = '';
     categories: Array<string> | boolean = false;
-    featured_image: string = ''
+    featured_image = '';
 }

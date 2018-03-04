@@ -10,11 +10,9 @@ import { PaginationService } from '../../services/pagination.service';
 })
 export class HomeComponent implements OnInit {
 
-  
-  constructor() { }
 
-  ngOnInit() {
-    
-  }
+  constructor() {}
+
+  ngOnInit() {}
 
 }

@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../services/loading.service';
 import { NoticeService } from '../services/notice.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { fadeInOut, flyInFromLeft } from '../animations/animations'
+import { fadeInOut, flyInFromLeft } from '../animations/animations';
 import { DbService } from '../services/db.service';
 
 @Component({
@@ -17,28 +17,33 @@ export class DashboardComponent implements OnInit {
   noticeMessage;
 
   constructor(
-    private title: Title, 
+    private title: Title,
     private loading: LoadingService,
     private notice: NoticeService,
     private router: Router,
     private db: DbService
-  ) { 
-    this.title.setTitle('Dashboard')
+  ) {
+    this.title.setTitle('Dashboard');
   }
 
   ngOnInit() {
+
     this.db.initBlogs();
+
     this.router.events.subscribe( event => {
-      if( event instanceof NavigationEnd)
-        window.scrollTo(0, 0)
-    })
+      if ( event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+
     this.notice.noticeEmitter.subscribe( result => {
-      this.noticeMessage = result
-      setTimeout( () => { this.noticeMessage = false }, 2500)
-    })
+      this.noticeMessage = result;
+      setTimeout( () => { this.noticeMessage = false; }, 2500);
+    });
+
   }
 
-  onNoticeClose(event){
+  onNoticeClose(event) {
     event.preventDefault();
     this.noticeMessage = false;
   }

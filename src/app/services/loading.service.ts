@@ -5,15 +5,14 @@ export class LoadingService {
 
   toggleLoadingEmitter: EventEmitter<boolean> = new EventEmitter();
   toggleBlockerEmitter: EventEmitter<boolean> = new EventEmitter();
-  constructor() { 
 
-  }
+  constructor() {}
 
-  toggleLoading(val: boolean){
+  toggleLoading(val: boolean) {
     this.toggleLoadingEmitter.emit(val);
   }
 
-  toggleBlocker(val: boolean){
+  toggleBlocker(val: boolean) {
     this.toggleBlockerEmitter.emit(val);
   }
 

@@ -46,15 +46,15 @@ const appRoutes: Routes = [
       {path: 'blog/:slug', component: BlogFrontendComponent }
   ]},
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
-    { path: '', component:HomeComponent },
-    { path: 'blog', component:BlogComponent },
+    { path: '', component: HomeComponent },
+    { path: 'blog', component: BlogComponent },
     { path: 'blog/new', component: NewBlogComponent },
-    { path: 'blog/:page', component:BlogComponent },
+    { path: 'blog/:page', component: BlogComponent },
     { path: 'blog/edit/:id', component: NewBlogComponent },
     { path: 'settings', component: SettingsComponent }
   ]},
   { path: 'login', component: LoginComponent }
-]
+];
 
 
 @NgModule({
@@ -86,8 +86,8 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule
   ],
   providers: [
-    LoginService, 
-    AuthGuard, 
+    LoginService,
+    AuthGuard,
     DbService,
     LoadingService,
     NoticeService,

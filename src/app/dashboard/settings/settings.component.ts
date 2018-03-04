@@ -12,19 +12,19 @@ import { fadeInOutCustom } from '../../animations/animations';
   animations: [fadeInOutCustom()]
 })
 export class SettingsComponent implements OnInit {
-  
+
   options = {
     show: false
-  }
+  };
 
   settings: SettingsModel = new SettingsModel();
-  settingsObj = {}
+  settingsObj = {};
   settingsForm: FormGroup;
 
   constructor(private db: DbService, private notice: NoticeService) { }
 
   ngOnInit() {
-    
+
     this.settingsForm = new FormGroup({
       generalSettings: new FormGroup({
         blogName: new FormControl('', Validators.required ),
@@ -32,26 +32,26 @@ export class SettingsComponent implements OnInit {
         blogLogo: new FormControl()
       }),
       showBlogName: new FormControl(),
-      useSidebar: new FormControl()      
-    })
+      useSidebar: new FormControl()
+    });
 
-    if( Object.keys(this.db.data.settings).length ){
-      this.settingsForm.setValue( this.db.data.settings )
+    if ( Object.keys(this.db.data.settings).length ) {
+      this.settingsForm.setValue( this.db.data.settings );
       this.options.show = true;
     }
 
     this.db.dataEmitter.subscribe( results => {
-      if( Object.keys(this.db.data.settings).length ){
-        this.settingsForm.setValue(this.db.data.settings)
+      if ( Object.keys(this.db.data.settings).length ) {
+        this.settingsForm.setValue(this.db.data.settings);
         this.options.show = true;
-      }        
-    })
-    
+      }
+    });
+
   }
 
-  onSubmit(){
-    this.notice.setNotice('Settings updated successfully!')
-    this.db.updateSettings(this.settingsForm.value);    
+  onSubmit() {
+    this.notice.setNotice('Settings updated successfully!');
+    this.db.updateSettings(this.settingsForm.value);
   }
 
 }

@@ -9,30 +9,29 @@ import { Observable } from 'rxjs/Observable';
 export class LoginService {
 
     auth: Observable<firebase.User>;
-    user:boolean | firebase.User;
+    user: boolean | firebase.User;
 
-    constructor(private firebaseAuth: AngularFireAuth, private router: Router){
+    constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
         this.auth = this.firebaseAuth.authState;
         this.auth.subscribe( r => {
-            if(r){
+            if (r) {
                 this.user = r;
-                //this.router.navigate(['/dashboard']);
-            }            
-        })
+            }
+        });
     }
 
-    login(email: string, password: string):Promise<{valid:boolean, message:string}>{
+    login(email: string, password: string): Promise<{valid: boolean, message: string}> {
         return this.firebaseAuth.auth
         .signInWithEmailAndPassword(email, password)
         .then( r => {
-            return {valid: true, message:''}
+            return {valid: true, message: ''};
         })
         .catch( r => {
-            return {valid: false, message:r.message}
-        })
+            return {valid: false, message: r.message};
+        });
     }
 
-    logOut(){
+    logOut() {
         this.firebaseAuth.auth.signOut();
     }
 
