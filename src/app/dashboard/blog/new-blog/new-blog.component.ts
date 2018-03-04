@@ -43,16 +43,10 @@ export class NewBlogComponent implements OnInit {
 
     if ( this.pageId ) {
 
-      if ( Object.keys(this.db.data.blogs).length ) {
-        this.setEditMode();
-      }
+      this.setEditMode();
 
       this.db.dataEmitter.subscribe( results => {
-
-        if ( Object.keys(results.blogs).length ) {
-          this.setEditMode();
-        }
-
+        this.setEditMode();
       });
 
     } else {
@@ -129,7 +123,8 @@ export class NewBlogComponent implements OnInit {
     this.notice.setNotice('Page deleted successfully!');
     event.preventDefault();
 
-    this.db.deletePage(this.pageId).catch( error => {
+    this.db.deletePage(this.pageId)
+    .catch( error => {
       if ( !error ) {
         this.router.navigate(['dashboard']);
       }
@@ -146,15 +141,18 @@ export class NewBlogComponent implements OnInit {
   }
 
   setEditMode() {
-    this.options.pageTitle = 'Edit Blog';
-    this.options.editMode = true;
-    this.options.show = true;
-    this.options.btnTitle = 'Update';
-    this.blogs = this.db.data.blogs;
-    this.page = this.findPageItem(this.pageId);
-
-    if ( !this.page ) {
-      this.router.navigate(['../../'], {relativeTo: this.route});
+    if ( Object.keys(this.db.data.blogs).length ) {
+      this.options.pageTitle = 'Edit Blog';
+      this.options.editMode = true;
+      this.options.show = true;
+      this.options.btnTitle = 'Update';
+      this.blogs = this.db.data.blogs;
+      
+      this.page = this.findPageItem(this.pageId);
+      
+      if ( !this.page ) {
+        this.router.navigate(['../../'], {relativeTo: this.route});
+      }
     }
 
   }

@@ -1,57 +1,58 @@
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 .header {
-    text-align: center;
+  text-align: center;
+  padding-top:30px;
 }
 .header .logo > a {
-    display: inline;
-    vertical-align: middle;
+  display: inline;
+  vertical-align: middle;
 }
 .header .logo a img {
-    max-width: 100px;
+  max-width: 100px;
 }
 .header .logo h4 {
-    display: inline;
-    vertical-align: middle;
+  display: inline;
+  vertical-align: middle;
 }
 hr {
-    margin:20px 0;
+  margin:20px 0;
 }
 .btn-dashboard {
-    position: fixed;
-    top:20px;
-    right:20px;
+  position: fixed;
+  top:20px;
+  right:20px;
 }
 .breadcrumb {
-    margin:0;
-    background:none;
-    padding: .375rem .75rem;
-    font-size: 1rem;
+  margin:0;
+  background:none;
+  padding: .375rem .75rem;
+  font-size: 1rem;
 }
 
 .search-box {
-    position:relative;
+  position:relative;
 }
 .search-results {
-    position: absolute;
-    top:100%;
-    left:0;
-    background:#ffffff;
-    width: 100%;
-    border-radius: 0 0 5px 5px;
-    z-index: 50;
-    box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+  position: absolute;
+  top:100%;
+  left:0;
+  background:#ffffff;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  z-index: 50;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
 }
 .search-results {
-    padding:0;
-    list-style-type: none;
-    margin:0;
+  padding:0;
+  list-style-type: none;
+  margin:0;
 }
 .search-results li {
-    padding:1em;
-    border-bottom: 1px solid #dedede;
+  padding:1em;
+  border-bottom: 1px solid #dedede;
 }
 .search-results li:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }

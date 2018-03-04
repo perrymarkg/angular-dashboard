@@ -29,7 +29,14 @@ export class DbService {
     }
 
     initSettings() {
-      this.getSettings().subscribe( results => {
+      this.getSettings()
+      .switchMap( result => {
+        if( !result ){
+          result = new SettingsModel();
+        }
+        return [result];
+      })
+      .subscribe( results => {
         this.data.settings = results;
         this.dataEmitter.emit(this.data);
       });
@@ -67,7 +74,10 @@ export class DbService {
     }
 
     getAllActiveBlogs() {
-        return this.af.list('pages', ref => ref.orderByChild('active').equalTo('true') ).snapshotChanges().map( items => {
+        return this.af
+        .list( 'pages', ref => ref.orderByChild('active').equalTo('true') )
+        .snapshotChanges()
+        .map( items => {
             return items.map(item => ({ key: item.key, ...item.payload.val() }));
         });
     }

@@ -26,6 +26,10 @@
     </ng-container>
   </ng-container>
 
+  <div class="col-md-12 text-center" *ngIf="!loadedBlogs">
+    <h3>No blogs created! Please add one from the Dashboard</h3>
+  </div>
+  
   <a *ngIf="pager && (pager.totalPages.length - selectedPage !== 0)" 
     class="btn btn-success btn-lg btn-block text-white" 
     (click)="loadMore()">
