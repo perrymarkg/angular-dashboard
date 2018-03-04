@@ -22,24 +22,24 @@ export class DbService {
     constructor(private af: AngularFireDatabase) {}
 
     initBlogs() {
-        this.getAllBlogs().subscribe( results => {
-            this.data.blogs = results;
-            this.dataEmitter.emit(this.data);
-        });
+      this.getAllBlogs().subscribe( results => {
+        this.data.blogs = results;
+        this.dataEmitter.emit(this.data);
+      });
     }
 
     initSettings() {
-        this.getSettings().subscribe( results => {
-            this.data.settings = results;
-            this.dataEmitter.emit(this.data);
-        });
+      this.getSettings().subscribe( results => {
+        this.data.settings = results;
+        this.dataEmitter.emit(this.data);
+      });
     }
 
     initActiveBlogs() {
-        this.getAllActiveBlogs().subscribe( results => {
-            this.data.activeBlogs = results;
-            this.dataEmitter.emit(this.data);
-        });
+      this.getAllActiveBlogs().subscribe( results => {
+        this.data.activeBlogs = results;
+        this.dataEmitter.emit(this.data);
+      });
     }
 
     getObject(obj: string): AngularFireList<any> {
