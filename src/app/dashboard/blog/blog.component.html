@@ -9,28 +9,30 @@
       </div>
 
       <div class="card-body">
-        <table *ngIf="blogs" class="table">
-          <thead>
-            <tr>
-              <th style="width:60%;">Title</th>
-              <th style="width:20%;">Created</th>
-              <th style="width:20%;">Updated</th>
-            </tr>  
-          </thead>
-          <tbody>
-            <tr *ngFor="let blog of blogs" [@fadeInOutCustom]>
-              <td>
-                <span class="badge badge-success" *ngIf="blog.active === true || blog.active === 'true' ">&nbsp;</span>
-                <span class="badge badge-danger" *ngIf="blog.active === false || blog.active === 'false' ">&nbsp;</span>
-                <a routerLink="edit/{{blog.key}}">
-                  {{ blog.title }}
-                </a>
-              </td>
-              <td>{{ blog.created | date: 'yyyy-MM-dd hh:ss'}}</td>
-              <td>{{ blog.updated | date: 'yyyy-MM-dd hh:ss' }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div *ngIf="blogs" class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width:60%;">Title</th>
+                <th style="width:20%;">Created</th>
+                <th style="width:20%;">Updated</th>
+              </tr>  
+            </thead>
+            <tbody>
+              <tr *ngFor="let blog of blogs" [@fadeInOutCustom]>
+                <td>
+                  <span class="badge badge-success" *ngIf="blog.active === true || blog.active === 'true' ">&nbsp;</span>
+                  <span class="badge badge-danger" *ngIf="blog.active === false || blog.active === 'false' ">&nbsp;</span>
+                  <a routerLink="edit/{{blog.key}}">
+                    {{ blog.title }}
+                  </a>
+                </td>
+                <td>{{ blog.created | date: 'yyyy-MM-dd hh:ss'}}</td>
+                <td>{{ blog.updated | date: 'yyyy-MM-dd hh:ss' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         
         <nav *ngIf="pager">
           <hr/>

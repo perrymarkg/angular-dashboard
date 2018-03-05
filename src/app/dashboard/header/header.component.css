@@ -35,3 +35,18 @@
   display: inline-block;
   vertical-align:  middle;
 }
+
+@media screen and ( max-width: 640px ){
+  .logo h3 {
+    font-size:1em;
+  }  
+}
+@media screen and ( max-width: 480px ){
+  .logo h3 {
+    display: none;
+  }
+  .btns .btn {
+    display: block;
+    margin-bottom:1px;
+  }
+}

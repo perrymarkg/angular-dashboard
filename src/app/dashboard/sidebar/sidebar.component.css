@@ -21,3 +21,17 @@ ul li.active a {
 ul li a:hover {
   text-decoration: none;
 }
+
+@media screen and (max-width:540px){ 
+  ul {
+    font-size:0;
+  }
+  ul li {
+    display: inline-block;
+    border-right:1px solid #222;
+    border-left:1px solid #666;
+  }
+  ul li a {
+    font-size:16px;
+  }
+}

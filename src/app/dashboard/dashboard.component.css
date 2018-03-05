@@ -46,3 +46,35 @@
   padding:20px;
 }
 
+@media screen and (max-width: 640px){
+  .sidebar {
+    width: 100px;
+  }
+  .content {
+    margin-left:100px;
+  }  
+}
+@media screen and (max-width:540px){
+  .header {
+    position: relative;
+    height: auto;
+  }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .content {
+    margin:0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .notice-message {
+    min-width: 240px;
+    width: 240px;
+    right:0;
+  }
+  .content-wrapper {
+    padding:10px 0;
+  }
+}

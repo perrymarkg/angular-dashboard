@@ -29,6 +29,7 @@ hr {
   position: fixed;
   top:20px;
   right:20px;
+  z-index: 500;
 }
 .breadcrumb {
   margin:0;
@@ -61,4 +62,11 @@ hr {
 }
 .search-results li:last-child {
   border-bottom: none;
+}
+@media screen and ( max-width: 540px ) {
+  .header .logo > a,
+  .header .logo h3 {
+    display: block;
+    margin:auto;
+  }
 }
