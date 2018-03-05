@@ -4,7 +4,7 @@
   <ng-container *ngIf=" blog && settings">
     <div [ngClass]="{'col-md-9': settings.useSidebar, 'col-md-12': !settings.useSidebar}" >
 
-      <div class="card" *ngIf="blog" [@fadeInOut]>
+      <div class="card" *ngIf="blog" [@customFadeInOut]>
         <div class="card-body">
           <div class="header">
             <h1>{{ blog.title }}</h1>
@@ -41,7 +41,7 @@
             <li class="page-item text-dark" 
             *ngFor="let p of pager.totalPages; let i = index" 
             [ngClass]="{'active': (i + 1) == selectedPage }" 
-            [@fadeInOutCustom]>
+            [@customFadeInOut]>
               <a class="page-link" (click)="paginate(i+1)" >{{i + 1}}</a>
             </li>
           </ul>

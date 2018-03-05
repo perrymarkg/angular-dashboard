@@ -10,6 +10,28 @@ export const fadeInOut = trigger('fadeInOut', [
     ])
 ]);
 
+export const fadeInOutMed = trigger('fadeInOutMed', [
+  transition(':enter', [   // :enter is alias to 'void => *'
+    style({opacity: 0}),
+    animate('500ms', style({opacity: 1}))
+  ]),
+  transition(':leave', [   // :leave is alias to '* => void'
+    animate('500ms', style({opacity: 0}))
+  ])
+]);
+
+export const fadeInOutFast = trigger('fadeInOutFast', [
+  transition(':enter', [   // :enter is alias to 'void => *'
+    style({opacity: 0}),
+    animate('500ms', style({opacity: 1}))
+  ]),
+  transition(':leave', [   // :leave is alias to '* => void'
+    animate('0ms', style({opacity: 0}))
+  ])
+]);
+
+/*
+Function call are not support in decorators
 export const fadeInOutCustom = (enterSpeed = '500ms', leaveSpeed = '500ms') => trigger('fadeInOutCustom', [
     transition(':enter', [   // :enter is alias to 'void => *'
       style({opacity: 0}),
@@ -18,7 +40,7 @@ export const fadeInOutCustom = (enterSpeed = '500ms', leaveSpeed = '500ms') => t
     transition(':leave', [   // :leave is alias to '* => void'
       animate(leaveSpeed, style({opacity: 0}))
     ])
-]);
+]); */
 
 export const flyInFromLeft = trigger('flyInFromLeft', [
     state('in', style({transform: 'translateX(0)'})),
@@ -51,3 +73,21 @@ export const grow = trigger('grow', [
     animate('200ms')
   ])
 ]);
+
+export class CustomAnimation {
+
+  fadeInOut(enterSpeed = '500ms', leaveSpeed = '500ms') {
+
+    return trigger('customFadeInOut', [
+        transition(':enter', [   // :enter is alias to 'void => *'
+          style({opacity: 0}),
+          animate(enterSpeed, style({opacity: 1}))
+        ]),
+        transition(':leave', [   // :leave is alias to '* => void'
+          animate(leaveSpeed, style({opacity: 0}))
+        ])
+    ]);
+
+  }
+
+}

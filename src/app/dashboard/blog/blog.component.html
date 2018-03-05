@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="card" [@fadeInOutCustom]>
+    <div class="card" [@fadeInOutFast]>
 
       <div class="card-header">
         <h1 [appDashboardTitle]></h1>
@@ -19,7 +19,7 @@
               </tr>  
             </thead>
             <tbody>
-              <tr *ngFor="let blog of blogs" [@fadeInOutCustom]>
+              <tr *ngFor="let blog of blogs" [@fadeInOutFast]>
                 <td>
                   <span class="badge badge-success" *ngIf="blog.active === true || blog.active === 'true' ">&nbsp;</span>
                   <span class="badge badge-danger" *ngIf="blog.active === false || blog.active === 'false' ">&nbsp;</span>

@@ -3,7 +3,7 @@ import { DbService } from '../../services/db.service';
 import { PageModel } from '../../models/page.model';
 import { AngularFireList } from 'angularfire2/database';
 import { LoadingService } from '../../services/loading.service';
-import { fadeInOutCustom } from '../../animations/animations';
+import { fadeInOutFast } from '../../animations/animations';
 import { PaginationService } from '../../services/pagination.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ import { NoticeService } from '../../services/notice.service';
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
-  animations: [fadeInOutCustom('500ms', '0s')]
+  animations: [fadeInOutFast]
 })
 export class BlogComponent implements OnInit {
 

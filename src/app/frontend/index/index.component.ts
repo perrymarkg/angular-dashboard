@@ -69,7 +69,6 @@ export class IndexComponent implements OnInit {
 
     for ( let x = 0; x < this.blogs.length; x++ ) {
       const rand = Math.floor( Math.random() * colors.length - 1) + 1;
-      console.log(rand);
       this.backgrounds.push( colors[ rand ] );
     }
 

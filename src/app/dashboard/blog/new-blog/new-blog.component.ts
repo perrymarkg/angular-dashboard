@@ -7,13 +7,13 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireList } from 'angularfire2/database';
 import { LoadingService } from '../../../services/loading.service';
 import { NoticeService } from '../../../services/notice.service';
-import { fadeInOutCustom } from '../../../animations/animations';
+import { fadeInOutFast } from '../../../animations/animations';
 
 @Component({
   selector: 'app-new-blog',
   templateUrl: './new-blog.component.html',
   styleUrls: ['./new-blog.component.css'],
-  animations: [fadeInOutCustom()]
+  animations: [ fadeInOutFast ]
 })
 export class NewBlogComponent implements OnInit {
 
@@ -147,9 +147,8 @@ export class NewBlogComponent implements OnInit {
       this.options.show = true;
       this.options.btnTitle = 'Update';
       this.blogs = this.db.data.blogs;
-      
       this.page = this.findPageItem(this.pageId);
-      
+
       if ( !this.page ) {
         this.router.navigate(['../../'], {relativeTo: this.route});
       }
