@@ -31,7 +31,7 @@ export class DbService {
     initSettings() {
       this.getSettings()
       .switchMap( result => {
-        if( !result ){
+        if ( !result ) {
           result = new SettingsModel();
         }
         return [result];

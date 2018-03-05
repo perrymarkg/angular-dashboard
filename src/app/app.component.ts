@@ -21,12 +21,12 @@ export class AppComponent {
     private db: DbService
   ) {
     this.db.initSettings();
-    
+
     this.loading.toggleLoadingEmitter.subscribe( val => this.showLoading = val);
 
   }
 
-  generateSettings(){
+  generateSettings() {
     this.db.updateSettings(this.settings);
   }
 

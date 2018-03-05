@@ -18,6 +18,9 @@
   display: inline-block;
   max-height: 100%;
   vertical-align: top;
+  padding: 1em;
+  border-radius: 5px;
+  background:#000;
 }
 .logo h3 {
   display: inline-block;

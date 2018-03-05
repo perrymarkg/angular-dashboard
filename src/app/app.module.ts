@@ -36,6 +36,7 @@ import { BlogComponent as BlogFrontendComponent } from './frontend/blog/blog.com
 // General
 import { LoadingComponent } from './ui/loading/loading.component';
 import { PaginationService } from './services/pagination.service';
+import { PageNotFoundComponent } from './frontend/page-not-found/page-not-found.component';
 
 
 
@@ -43,6 +44,7 @@ import { PaginationService } from './services/pagination.service';
 const appRoutes: Routes = [
   { path: '', component: FrontendComponent, children: [
       {path: '', component: IndexComponent },
+      {path: 'page-not-found', component: PageNotFoundComponent },
       {path: 'blog/:slug', component: BlogFrontendComponent }
   ]},
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
     { path: 'blog/edit/:id', component: NewBlogComponent },
     { path: 'settings', component: SettingsComponent }
   ]},
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 
@@ -73,7 +76,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     IndexComponent,
     BlogFrontendComponent,
-    LoadingComponent
+    LoadingComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

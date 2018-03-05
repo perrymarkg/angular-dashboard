@@ -9,9 +9,9 @@
           <a [routerLink]="['/']" *ngIf="settings.generalSettings">
               <img [src]="settings.generalSettings.blogLogo" />
           </a>
-          <h4 *ngIf="settings.showBlogName">
-              <a [routerLink]="['/']">{{settings.generalSettings.blogName}}</a>
-          </h4>
+          <h3 *ngIf="settings.showBlogName">
+              <a [routerLink]="['/']">{{settings.generalSettings.blogTitle}}</a>
+          </h3>
           </div>
       </div>
 
